@@ -1,0 +1,125 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Monitor Cozinha</title>
+
+    @*<environment include="Development">*@
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    @*</environment>*@
+
+    <style type="text/css">
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: white;
+        }
+
+        .ajusteTopBady {
+            margin-top: 150px;
+        }
+    </style>
+</head>
+<body>
+    <div id="divMonitorBody" class="container-fluid ajusteTopBady"></div>
+
+    <header>
+        <div style="text-align:center; font-size:25px; margin-right:30px;"><b>@Controle.ControleAcesso.Unidade</b></div>
+        <input type="hidden" id="IdEmpresa" name="IdEmpresa" value="@Controle.ControleAcesso.IdEmpresa" />
+        <input type="hidden" id="IdUnidade" name="IdUnidade" value="@Controle.ControleAcesso.IdUnidade" />
+        <div class="container-fluid mt-2" id="divTopHeader">
+            <table class="table table-bordered" style="border: 5px solid #dee2e6 !important; margin-bottom:0px;">
+                <thead>
+                    <tr class="col-md-12" style="background-color:Gainsboro">
+                        <th style="width:33%; border: 5px solid #dee2e6 !important; font-size:30px; text-align: center;">
+                            <div style="text-align: left;"><button class="btn btn-primary" id="btCadastrarNumeroPedido"><i class="fa fa-plus-square" style="font-size:36px;"></i></button><p style="text-align:center; margin-top: -52px;">FAZENDO:</p></div>
+                        </th>
+                        @*<th style="width:33%; border: 5px solid #dee2e6 !important; font-size:30px; text-align: center;">
+                            <p>FAZENDO:</p>
+                        </th>*@
+                        <th style="width:33%; border: 5px solid #dee2e6 !important; font-size:30px; text-align: center;">
+                            <p>PRONTO:</p>
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </header>
+
+    <footer class="border-top footer text-muted">
+        <div class="container-fluid" style="text-align:center">
+            &copy; 2019 - Mymonitor.com.br @*<a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>*@
+        </div>
+    </footer>
+
+    <!-- Modal para cadastrar número -->
+    <div class="modal fade" id="ModalCadastrarNumero" tabindex="-1" role="dialog" aria-labelledby="fatorFModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog border-dark">
+            <div class="modal-content" style="width: 200%; margin-left: -50%;">
+                <!-- Modal Header -->
+                <div id="mensagemModal" name="mensagem" style="display: none; background-color: #ff2d296b; text-align:center; height: 40px; padding-top: 5px; font-size: 20px;"><b>mensagem</b></div>
+
+                <div class="modal-header">
+                    <div class="col-md-11">
+                        <h3 class="modal-title">Cadastrar Número de Pedido </h3>
+                    </div>
+                    <div class="col-md-1">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                </div>
+                <!-- Modal body -->
+                <!--------------------------------------------------->
+
+                <input type="hidden" id="IdEmpresa" value="@Controle.ControleAcesso.IdEmpresa" />
+                <input type="hidden" id="IdUnidade" value="@Controle.ControleAcesso.IdUnidade" />
+
+                <fieldset>
+                    <legend>@ViewBag.Title</legend>
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="form-group row col-md-12">
+                            <div class="form-group col-md-12">
+                                <Label class="control-label col-md-3">Número de pedido:</Label>
+                                <div class="col-md-12">
+                                    <input type="text" id="NumeroPedido" name="NumeroPedido" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <!--------------------------------------------------->
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <div class="col-md-12" style="text-align: right;">
+                        <button id="btnFecharNumeroPedido" type="button" class="btn btn-danger">&nbsp;&nbsp;&nbsp;Fechar&nbsp;&nbsp;&nbsp;</button>
+                        <button id="btnSalvarNumeroPedido" type="button" class="btn btn-outline-success">&nbsp;&nbsp;&nbsp;Salvar&nbsp;&nbsp;&nbsp;</button>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    @*<environment include="Development">*@
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+        <script src="~/js/Views/MonitorAdmin/MonitorAdmin.js"></script>
+        <script src="~/lib/fontawesome/fontawesome-free-5.9.0-web/js/all.js"></script>
+    @*</environment>*@
+</body>
+</html>
+<div id="rodape"></div>
+
+
+
+

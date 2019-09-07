@@ -1,0 +1,153 @@
+﻿@model JBD.MonitorCozinha.WebAdmin.Models.EmpresaViewModel
+
+@{
+    <style type="text/css">
+        label {
+            text-align: left !important;
+        }
+    </style>
+}
+
+
+<div id="mensagem" name="mensagem" style="display: none; background-color: #ff2d296b; text-align:center; height: 40px; padding-top: 5px; font-size: 20px;"><b>mensagem</b></div>
+<div class="jumbotron row topJumboTrom" id="TopoPesquisa">
+    <div class="col-md-12 form-group row">
+        <div class="col-md-2" style="text-align:right ; padding-top: 5px;">
+            <lable style="font-size:18px ;">Nome Fantasia</lable>
+        </div>
+        <div class="col-md-5">
+            <input type="text" class="form-control" id="EmpresaPesquisar" name="EmpresaPesquisar" />
+        </div>
+        <div class="col-md-1">
+            <button class="btn btn-primary" id="btPesquisar">Pesquisar</button>
+        </div>
+        @*<div class="col-md-1">
+                <button class="btn btn-primary" id="btExportar">Exportar</button>
+            </div>*@
+        <div class="col-md-1">
+            <button class="btn btn-primary" id="btNovo">Cadastrar</button>
+        </div>
+
+    </div>
+</div>
+<div id="divListarEmpresas"></div>
+
+@*<script src="~/js/Views/Empresa/Empresa.js"></script>*@
+
+<!-- Modal para cadastrar cliente -->
+<div class="modal fade" id="ModalCadastrarEmpresa" tabindex="-1" role="dialog" aria-labelledby="fatorFModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog border-dark">
+        <div class="modal-content" style="width: 200%; margin-left: -50%;">
+            <!-- Modal Header -->
+            <div id="mensagemModal" name="mensagem" style="display: none; background-color: #ff2d296b; text-align:center; height: 40px; padding-top: 5px; font-size: 20px;"><b>mensagem</b></div>
+
+            <div class="modal-header">
+                <div class="col-md-11">
+                    <h3 class="modal-title">Cadastrar Empresa</h3>
+                </div>
+                <div class="col-md-1">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+            </div>
+            <!-- Modal body -->
+            <!--------------------------------------------------->
+
+            @using (Html.BeginForm("Salvar", "Empresa", FormMethod.Post, new { name = "frmCliente", id = "frmCliente" }))
+            {
+                @Html.AntiForgeryToken()
+                <input type="hidden" id="IdEmpresa" value="" />
+                <input type="hidden" id="CNPJ_ORIGINAL" value="" />
+
+                <fieldset>
+                    <legend>@ViewBag.Title</legend>
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="form-group row col-md-12">
+                            <div class="form-group col-md-3">
+                                @Html.LabelFor(model => model.CNPJ, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.CNPJ, new { htmlAttributes = new { @class = "form-control", @maxlength = "14", @autofocus = "autofocus" } })
+                                    @Html.ValidationMessageFor(model => model.CNPJ, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group col-md-9">
+                                @Html.LabelFor(model => model.RazaoSocial, htmlAttributes: new { @class = "control-label col-md-5" })
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.RazaoSocial, new { htmlAttributes = new { @class = "form-control", @maxlength = "60" } })
+                                    @Html.ValidationMessageFor(model => model.RazaoSocial, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row col-md-12">
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(model => model.NomeFantasia, htmlAttributes: new { @class = "control-label col-md-5" })
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.NomeFantasia, new { htmlAttributes = new { @class = "form-control", @maxlength = "60" } })
+                                    @Html.ValidationMessageFor(model => model.NomeFantasia, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group col-md-3">
+                                @Html.LabelFor(model => model.InscricaoEstadual, htmlAttributes: new { @class = "control-label col-md-12" })
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.InscricaoEstadual, new { htmlAttributes = new { @class = "form-control", @maxlength = "60" } })
+                                    @Html.ValidationMessageFor(model => model.InscricaoEstadual, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        @*</div>
+                        <div class="form-group row col-md-12">*@
+                            <div class="form-group col-md-3">
+                                @Html.LabelFor(model => model.InscricaoMunicipal, htmlAttributes: new { @class = "control-label col-md-12" })
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.InscricaoMunicipal, new { htmlAttributes = new { @class = "form-control", @maxlength = "60" } })
+                                    @Html.ValidationMessageFor(model => model.InscricaoMunicipal, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row col-md-12">
+                            <div class="form-group col-md-8">
+                                @Html.LabelFor(model => model.NomeContato, htmlAttributes: new { @class = "control-label col-md-5" })
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.NomeContato, new { htmlAttributes = new { @class = "form-control", @maxlength = "60" } })
+                                    @Html.ValidationMessageFor(model => model.NomeContato, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                @Html.LabelFor(model => model.Telefone, htmlAttributes: new { @class = "control-label col-md-8" })
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.Telefone, new { htmlAttributes = new { @class = "form-control", @maxlength = "15" } })
+                                    @Html.ValidationMessageFor(model => model.Telefone, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row col-md-12">
+                            <div class="form-group col-md-12">
+                                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-8" })
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @maxlength = "60" } })
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <input type="hidden" id="DataCadastro" value="@DateTime.Now" />
+                        <input type="hidden" id="IdStatus" value="" />
+                    </div>
+                </fieldset>
+            }
+
+            <!--------------------------------------------------->
+            <!-- Modal footer -->
+            <div class="modal-footer" style="display:grid">
+                <div class="col-md-12" style="align-content: flex-end">
+                    <button id="btnFecharEmpresa" type="button" class="btn btn-danger">&nbsp;&nbsp;&nbsp;Fechar&nbsp;&nbsp;&nbsp;</button>
+                    <button id="btnSalvarEmpresa" type="button" class="btn btn-outline-success">&nbsp;&nbsp;&nbsp;Salvar&nbsp;&nbsp;&nbsp;</button>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,185 @@
+﻿@model JBD.MonitorCozinha.WebAdmin.Models.UnidadeViewModel
+
+<div id="mensagem" name="mensagem" style="display: none; background-color: #ff2d296b; text-align:center; height: 40px; padding-top: 5px; font-size: 20px;"><b>mensagem</b></div>
+<div class="row" style=" display: contents !important; text-align:center;">
+    <div style="background-color: #F2F2F2">
+        <h3 class="modal-title" style="background-color: #e9ecef; margin-right: 5px; margin-left: 5px;">Empresa: @Model.NomeEmpresa</h3>
+    </div>
+</div>
+
+<div class="jumbotron row topJumboTrom" id="TopoPesquisa" >
+
+    @*Recebe Id empresa para passar no Unidade.JS*@
+    <input type="hidden" id="IdEmpresa" value="@Model.IdEmpresa" />
+    <div class="col-md-12 form-inline" style="">
+        <div class="col-md-2" style="text-align:-webkit-right ; padding-top: 5px;">
+            <lable style="font-size:18px ;">Nome Unidade</lable>
+        </div>
+
+        <div class="col-md-4">
+            <input type="text" class="form-control" id="UnidadePesquisar" name="UnidadePesquisar" style="width:inherit;" />
+        </div>
+        <div class="col-md-1" style="padding-right: 80px">
+            <button class="btn btn-primary" id="btPesquisar">Pesquisar</button>
+        </div>
+
+        <div class="col-md-1" style="padding-right: 80px">
+            <button class="btn btn-primary" id="btNovo">Cadastrar</button>
+        </div>
+        <div class="col-md-1" style="padding-right: 80px">
+            @Html.ActionLink("Voltar", "Index", "Empresa", null, new {@class = "btn btn-primary" })
+            @*<button class="btn btn-primary" id="btVoltar" style="align-content:flex-end">Voltar</button>*@
+
+        </div>
+
+    </div>
+</div>
+
+<div id="divListarUnidades"></div>
+
+@*<script src="~/js/Views/Unidade/Unidade.js"></script>*@
+
+<!-- Modal para cadastrar cliente -->
+
+<div class="modal fade" id="ModalCadastrarUnidade" tabindex="-1" role="dialog" aria-labelledby="fatorFModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog border-dark">
+        <div class="modal-content" style="width: 200%; margin-left: -50%;">
+            <!-- Modal Header -->
+            <div id="mensagemModal" name="mensagem" style="display: none; background-color: #ff2d296b; text-align:center; height: 40px; padding-top: 5px; font-size: 20px;"><b>mensagem</b></div>
+
+            <div class="modal-header">
+                <div class="col-md-11">
+                    <h3 class="modal-title">Cadastrar Unidade</h3>
+                </div>
+                <div class="col-md-1">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+            </div>
+            <!-- Modal body -->
+            <!--------------------------------------------------->
+
+            @using (Html.BeginForm("Salvar", "Unidade", FormMethod.Post, new { name = "frmCliente", id = "frmCliente" }))
+            {
+                @Html.AntiForgeryToken()
+                <input type="hidden" id="IdUnidade" value="" />
+
+
+                <fieldset>
+                    <legend>@ViewBag.Title</legend>
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="form-group row col-md-12">
+                            <div class="form-group col-md-8">
+                                @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-8" })
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control", @maxlength = "60" } })
+                                    @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                @Html.LabelFor(model => model.CEP, htmlAttributes: new { @class = "control-label col-md-3" })
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.CEP, new { htmlAttributes = new { @class = "form-control cepClass", @maxlength = "9" } })
+                                    @Html.ValidationMessageFor(model => model.CEP, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row col-md-12">
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(model => model.Endereco, htmlAttributes: new { @class = "control-label col-md-3" })
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.Endereco, new { htmlAttributes = new { @class = "form-control", @maxlength = "60" } })
+                                    @Html.ValidationMessageFor(model => model.Endereco, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group col-md-2">
+                                @Html.LabelFor(model => model.Numero, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.Numero, new { htmlAttributes = new { @class = "form-control", @maxlength = "10" } })
+                                    @Html.ValidationMessageFor(model => model.Numero, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                @Html.LabelFor(model => model.Bairro, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.Bairro, new { htmlAttributes = new { @class = "form-control", @maxlength = "60" } })
+                                    @Html.ValidationMessageFor(model => model.Bairro, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row col-md-12">
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(model => model.Cidade, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.Cidade, new { htmlAttributes = new { @class = "form-control", @maxlength = "60" } })
+                                    @Html.ValidationMessageFor(model => model.Cidade, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group col-md-2">
+                                @Html.LabelFor(model => model.Estado, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.Estado, new { htmlAttributes = new { @class = "form-control", @maxlength = "60" } })
+                                    @Html.ValidationMessageFor(model => model.Estado, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label>
+                                    @Html.LabelFor(model => model.Pais, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-12">
+                                        <select id="Pais" class="form-control"></select>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group row col-md-12">
+                            <div class="form-group col-md-8">
+                                @Html.LabelFor(model => model.NomeContato, htmlAttributes: new { @class = "control-label col-md-12" })
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.NomeContato, new { htmlAttributes = new { @class = "form-control", @maxlength = "50" } })
+                                    @Html.ValidationMessageFor(model => model.NomeContato, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                @Html.LabelFor(model => model.Telefone, htmlAttributes: new { @class = "control-label col-md-12" })
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.Telefone, new { htmlAttributes = new { @class = "form-control", @maxlength = "15" } })
+                                    @Html.ValidationMessageFor(model => model.Telefone, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row col-md-12">
+                            <div class="form-group col-md-12">
+                                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-12" })
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @maxlength = "100" } })
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <input type="hidden" id="DataCadastro" value="@DateTime.Now" />
+                            <input type="hidden" id="IdStatus" value="" />
+                            <input type="hidden" id="idEmpresaNum" value="@Model.IdEmpresa" />
+
+                        </div>
+                    </div>
+                </fieldset>
+            }
+
+            <!--------------------------------------------------->
+            <!-- Modal footer -->
+            <div class="modal-footer" style="display:grid">
+                <div class="col-md-12" style="align-content: flex-end">
+                    <button id="btnFecharUnidade" type="button" class="btn btn-danger">&nbsp;&nbsp;&nbsp;Fechar&nbsp;&nbsp;&nbsp;</button>
+                    <button id="btnSalvarUnidade" type="button" class="btn btn-outline-success">&nbsp;&nbsp;&nbsp;Salvar&nbsp;&nbsp;&nbsp;</button>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

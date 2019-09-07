@@ -1,0 +1,42 @@
+﻿@using JBD.MonitorCozinha.Domain.Enuns;
+@model IEnumerable<JBD.MonitorCozinha.WebAdmin.Models.NumeroPedidoViewModel>
+
+<div class="table col-lg-12 col-sm-12">
+    @foreach (var item in Model)
+    {
+        if (item.IdStatusPedido == StatusPedidoEnum.Fazendo)
+        {
+            <div class="float-left p-2">
+                <span id="b">
+                    <button class="btn btn-outline-dark form-control" value="@item.IdStatusPedido" style="font-size:40px">
+                        <a href="#" id="btDelete" onclick="MonitorAdmin.DeletarNumero(@item.IdNumeroPedido)" title="Apagar esse número">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        </a>
+                        <b>@item.NumeroPedido</b>
+                        @if (Controle.ControleAcesso.IdTipo != TipoUsuarioEnum.Operacional)
+                        {
+                            <a href="#" id="btFazendo" onclick="MonitorAdmin.AtualizarStatus(@item.IdNumeroPedido, 3)" title="Mudar para Fazendo">
+                                <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                            </a>
+                        }
+                    </button>
+                </span>
+            </div>
+
+
+            @*<div class="float-left p-2">
+                    <span id="b">
+                        <button class="btn btn-outline-primary form-control" value="@item.IdStatusPedido" style="font-size:40px">
+                            <a href="#" id="btAFazer" onclick="MonitorAdmin.AtualizarStatus(@item.IdNumeroPedido, 1)" title="Voltar para À Fazer">
+                                <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                            </a>
+                            <b>@item.NumeroPedido</b>
+                            <a href="#" id="btPronto" onclick="MonitorAdmin.AtualizarStatus(@item.IdNumeroPedido, 3)" title="Modar para pronto">
+                                <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                            </a>
+                        </button>
+                    </span>
+                </div>*@
+        }
+    }
+</div>

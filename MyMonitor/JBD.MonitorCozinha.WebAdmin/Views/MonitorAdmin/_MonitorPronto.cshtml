@@ -1,0 +1,30 @@
+﻿@using JBD.MonitorCozinha.Domain.Enuns;
+@model IEnumerable<JBD.MonitorCozinha.WebAdmin.Models.NumeroPedidoViewModel>
+
+<div class="table col-lg-12 col-sm-12">
+    @foreach (var item in Model)
+    {
+        if (item.IdStatusPedido == StatusPedidoEnum.Pronto)
+        {
+            <div class="float-left p-2">
+                <span id="b">
+                    <button class="btn btn-outline-success form-control" value="@item.IdStatusPedido" style="font-size:40px">
+                        @if (Controle.ControleAcesso.IdTipo != TipoUsuarioEnum.Operacional)
+                        {
+                            <a href="#" id="btFazendo" onclick="MonitorAdmin.AtualizarStatus(@item.IdNumeroPedido, 2)" title="Voltar para Fazendo">
+                                <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                            </a>
+                        }
+                        <b>@item.NumeroPedido</b>
+                        @if (Controle.ControleAcesso.IdTipo != TipoUsuarioEnum.Operacional)
+                        {
+                            <a href="#" id="btEntregue" onclick="MonitorAdmin.AtualizarStatus(@item.IdNumeroPedido, 4)" title="Mudar para pedido retirado">
+                                <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                            </a>
+                        }
+                    </button>
+                </span>
+            </div>
+        }
+    }
+</div>

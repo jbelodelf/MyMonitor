@@ -1,0 +1,77 @@
+﻿@using JBD.MonitorCozinha.Domain.Enuns;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Monitor Cozinha</title>
+
+    @*<environment include="Development">*@
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    @*</environment>*@
+</head>
+<body>
+    <header>
+        <div class="container-fluid p-4" id="divTop" style="width: 90%;">
+            <div class="jumbotron row" id="TopoPesquisa" style="background-color: #FF7175;">
+                <div class="col-md-12" style="text-align:center; padding-top: 5px; font-size:40px; color: white;">
+                    <b>SEJA BEM VINDO AO MONITOR DE COZINHA</b>
+                </div>
+            </div>
+        </div>
+    </header>
+    <content>
+        <div class="container-fluid p-4" id="divTop" style="width: 90%;">
+            <div class="col-md-12 form-group row">
+                @if (Controle.ControleAcesso.IdTipo == TipoUsuarioEnum.Operacional || Controle.ControleAcesso.IdTipo == TipoUsuarioEnum.Admin)
+                {
+                    <div class="col-md-3" style="text-align:center; padding-top: 5px; font-size:50px;">
+                        <button class="btn btn-outline-danger col-sm-10 p-md-1" onclick="Usuario.UnidadeAdmin('MONITOR TV')" id="btTV_old" style="height:200px; text-align:center; font-size:35px; background-color: #FF7175;">Monitor de TV</button>
+                    </div>
+                }
+                @if (Controle.ControleAcesso.IdTipo == TipoUsuarioEnum.Operacional || Controle.ControleAcesso.IdTipo == TipoUsuarioEnum.Admin)
+                {
+                    <div class="col-md-3" style="text-align:center; padding-top: 5px; font-size:50px;">
+                        <button class="btn btn-outline-danger col-sm-10 p-md-1" onclick="Usuario.UnidadeAdmin('CADASTRAR SENHAS')" id="btTVAdmin_old" style="height:200px; font-size:35px; background-color: #FF7175;">Cadastrar senhas</button>
+                    </div>
+                }
+                @if (Controle.ControleAcesso.IdTipo == TipoUsuarioEnum.Operacional || Controle.ControleAcesso.IdTipo == TipoUsuarioEnum.Admin)
+                {
+                    <div class="col-md-3" style="text-align:center; padding-top: 5px; font-size:50px;">
+                        <button class="btn btn-outline-danger col-sm-10 p-md-1" onclick="Usuario.UnidadeAdmin('CADASTRAR SENHAS - MOTOBOY')" id="btTVAdmin_old" style="height:200px; font-size:35px; background-color: #FF7175;">MOTOBOY</button>
+                    </div>
+                }
+                @if (Controle.ControleAcesso.IdTipo == TipoUsuarioEnum.Cozinha || Controle.ControleAcesso.IdTipo == TipoUsuarioEnum.Operacional || Controle.ControleAcesso.IdTipo == TipoUsuarioEnum.Admin)
+                {
+                    <div class="col-md-3" style="text-align:center; padding-top: 5px;">
+                        <button class="btn btn-outline-danger col-sm-10 p-md-1" onclick="Usuario.UnidadeAdmin('MONITOR ADMINISTRATIVO')" id="btAdmin_old" style="height:200px; font-size:35px; background-color: #FF7175;">Monitor Adm.</button>
+                    </div>
+                }
+                @if (Controle.ControleAcesso.IdTipo == TipoUsuarioEnum.Admin)
+                {
+                    <div class="col-md-3" style="text-align:center; padding-top: 5px;">
+                        <button class="btn btn-outline-danger col-sm-10 p-md-1" id="btGestao" style="height:200px; font-size:35px;">Gestão de cadastro</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </content>
+    <footer class="border-top footer text-muted">
+        <div class="container-fluid" style="text-align:center">
+            &copy; 2019 - Mymonitor.com.br @*<a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>*@
+        </div>
+    </footer>
+
+    @*<environment include="Development">*@
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+        <script src="~/js/Views/Usuario/Usuario.js"></script>
+    @*</environment>*@
+</body>
+</html>
+<div id="rodape"></div>

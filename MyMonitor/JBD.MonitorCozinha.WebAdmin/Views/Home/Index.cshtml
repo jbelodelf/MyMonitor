@@ -1,0 +1,285 @@
+﻿@model JBD.MonitorCozinha.WebAdmin.Models.EmpresaViewModel
+
+@{
+    Layout = null;
+
+}
+
+<!DOCTYPE html>
+
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Monitor Cozinha</title>
+
+    @*<environment include="Development">*@
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    @*</environment>*@
+
+    <style>
+        .btn-lg-hover {
+            background: #FF7175;
+            color: #ffffff;
+            border: 2px solid;
+        }
+
+            .btn-lg-hover:hover {
+                color: lightgrey;
+            }
+
+        .btn-custom {
+            border-radius: 15px;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="mensagemBody" name="mensagem" style="display: none; background-color: #ff2d296b; text-align:center; height: 40px; padding-top: 5px; font-size: 20px;"><b>mensagem</b></div>
+    <!-- ---------------------------------------------- -->
+    <input type="hidden" id="IdEmpresa" name="IdEmpresa" value="@Controle.ControleAcesso.IdEmpresa" />
+    <input type="hidden" id="IdUnidade" name="IdUnidade" value="@Controle.ControleAcesso.IdUnidade" />
+    <input type="hidden" id="Logomarca" name="Logomarca" value="" />
+    <input type="hidden" id="CozinhaNome" name="CozinhaNome" value="" />
+    <!-- ---------------------------------------------- -->
+    @if (Controle.PerfilPFuncionalidade.Nome == "MONITOR TV")
+    {
+        <div class="container-fluid p-4" style="width: 90%;">
+            <div class="jumbotron row" id="TopoPesquisa">
+                <div class="col-md-12" style="text-align:center; padding-top: 5px; font-size:40px;">
+                    <b>@Controle.PerfilPFuncionalidade.Nome</b>
+                </div>
+            </div>
+            <div class="col-md-12 form-group row" style="height: 300px; margin-top:100px;">
+                @foreach (var iten in Model.Unidades)
+                {
+                    <div class="col-md-4" style="text-align:center; padding-top: 5px; font-size:50px;">
+                        <button class="btn btn-outline-dark col-sm-10 p-md-1" style="height:200px; font-size:35px;" onclick="Usuario.MonitorTV(@iten.IdUnidade,'@iten.Nome')">@iten.Nome</button>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+
+    <!-- ---------------------------------------------- -->
+    @if (Controle.PerfilPFuncionalidade.Nome == "CADASTRAR SENHAS")
+    {
+        <div class="container-fluid p-4" style="width: 90%;">
+            <div class="jumbotron row" id="TopoPesquisa">
+                <div class="col-md-12" style="text-align:center; padding-top: 5px; font-size:40px;">
+                    <b>@Controle.PerfilPFuncionalidade.Nome</b>
+                </div>
+            </div>
+            <div class="col-md-12 form-group row" style="height: 300px; margin-top:100px;">
+                @foreach (var iten in Model.Unidades)
+                {
+                    <div class="col-md-4" style="text-align:center; padding-top: 5px; font-size:50px;">
+                        <button class="btn btn-outline-dark col-sm-10 p-md-1" style="height:200px; font-size:35px;" onclick="Home.Cadastrar(@iten.IdEmpresa,@iten.IdUnidade,'@iten.Nome')">@iten.Nome</button>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+
+    <!-- ---------------------------------------------- -->
+    @if (Controle.PerfilPFuncionalidade.Nome == "CADASTRAR SENHAS - MOTOBOY")
+    {
+        <div class="container-fluid p-4" style="width: 90%;" id="CadastroSenhaMotoboy">
+
+            <!-- BOTÃO INICIAR -->
+            <div id="dvIniciar">
+                <div class="col-md-12" style="text-align:center; padding-top: 5px; font-size:40px;margin-top: 10%;">
+                    <img class="img-fluid" src="~/images/RAPPI.png" />
+                </div>
+                <div class="col-md-12" style="text-align:center; padding-top: 5px; font-size:40px;">
+                    <button class="btn btn-lg-hover btn-custom" style="font-size:35px;" onclick="Home.CadastrarSenha()"><b>INICIAR</b></button>
+                </div>
+            </div>
+
+            <!-- DIGITAR NÚMERO DE PEDIDO -->
+            <div id="dvDigitarNumero" class="col-md-12" style="text-align:center; padding-top: 5px; font-size:40px;margin-top: 10%; display: none;">
+                <div class="form-group row col-md-12">
+                    <div class="form-group col-md-12">
+                        <Label class="control-label col-md-10" style="color: #FF7175;">DIGITE O NÚMERO DO PEDIDO</Label>
+                        <div class="col-md-12">
+                            <input type="text" id="NumeroPedido" name="NumeroPedido" class="form-control form-control-lg col-2 d-inline-flex" maxlength="10" placeholder="Nº Pedido" style="background-color: #FF7175; color: white; font-size:xx-large;" />
+                        </div>
+                    </div>
+                    <div class="col-md-12" style="text-align:center; padding-top: 5px; font-size:40px;">
+                        <img class="img-fluid" src="~/images/RAPPI.png" />
+                    </div>
+                    <div class="col-md-12" style="text-align:center; padding-top: 5px; font-size:40px;">
+                        <button class="btn btn-lg-hover btn-custom" style="font-size:20px;" onclick="Home.SelecionarUnidade()"><b>AVANÇAR</b></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ESCOLHER A COZINHA -->
+            <div class="col-md-12 row" id="dvCozinhas" style="display: none;">
+                <div class="col-md-12 form-group" style="text-align:center; font-size:40px; margin-top: 10%;">
+                    <Label class="control-label col-md-12" style="color: #FF7175;">SELECIONE A COZINHA</Label>
+                </div>
+                <div class="col-md-12 row">
+                    <div class="col-md-8 mx-auto" style="text-align: center;">
+                        @foreach (var iten in Model.Unidades)
+                        {
+                            <div class="col-md-4" style=" float: left;">
+                                <a class="btn btn-custom" onclick="Home.Confirmar(@iten.IdUnidade, '@iten.ImageLogomarca', '@iten.Nome')"><img src="@iten.ImageLogomarca" class="img-fluid rounded img-thumbnail btn-outline-danger"></a>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONFIRMAR -->
+            <div class="col-md-12 row" id="dvConfirmar" style="display: none;">
+                <div class="col-md-12 form-group" style="text-align:center; font-size:40px; margin-top: 10%;">
+                    <Label class="control-label col-md-12" style="color: #FF7175;">CONFIRMAR SOLICITAÇÃO</Label>
+                </div>
+                <div class="col-md-12 row">
+                    <div class="col-md-4 mx-auto" style="text-align: center; display: inline-flex;">
+                        <div class="col-md-4" id="dvNumeroPedido" style="float:left;">
+                        </div>
+                        <div class="col-md-4" id="dvLogomarca" style="float:left;">
+                        </div>
+                        <div class="col-md-4" id="btConfirmar" style="float:left;">
+                            <button type="button" class="btn btn-success btn-lg btn-custom" onclick="Home.InserirNumero('MOTOBOY')" style="height: 60px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FINALIZAR -->
+            <div class="col-md-12 row" id="dvFinalizar" style="display: none;">
+                <div class="col-md-12" style="text-align:center; padding-top: 5px; font-size:40px; margin-top: 10%;">
+                    <img class="img-fluid" src="~/images/RAPPI.png" />
+                </div>
+
+                <div class="col-md-12 form-group" style="text-align:center; font-size:40px;">
+                    <Label class="control-label col-md-12" style="color: #FF7175;">OBRIGADO! AGUARDE SER</Label>
+                    <Label class="control-label col-md-12" style="color: #FF7175;">CHAMADO PELO PAINEL.</Label>
+                </div>
+                <div class="col-md-12 row">
+                    <div class="col-md-6 mx-auto" style="text-align: center; display: inline-flex;">
+                        <div class="col-md-12" id="dvBtNomeCozinha" style="float:left;"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        @if (Controle.PerfilPFuncionalidade.Nome == "CADASTRAR SENHAS - MOTOBOY")
+        {
+            <div id="dvBtVoltar" class="col-md-12" style="padding-top: 5px; font-size:40px; margin-top:20px; float:left; display: none">
+                @*<button class="btn btn-lg-hover btn-custom" style="font-size:20px;"><i class='fas fa-arrow-alt-circle-left'></i> <b>VOLTAR</b></button>*@
+            </div>
+        }
+    }
+
+    <!-- ---------------------------------------------- -->
+    @if (Controle.PerfilPFuncionalidade.Nome == "MONITOR ADMINISTRATIVO")
+    {
+        <div class="container-fluid p-4" style="width: 90%;">
+            <div class="jumbotron row" id="TopoPesquisa">
+                <div class="col-md-12" style="text-align:center; padding-top: 5px; font-size:40px;">
+                    <b>@Controle.PerfilPFuncionalidade.Nome</b>
+                </div>
+            </div>
+            <div class="col-md-12 form-group row" style="height: 300px; margin-top:100px;">
+                @foreach (var iten in Model.Unidades)
+                {
+                    if (Controle.ControleAcesso.IdTipo == JBD.MonitorCozinha.Domain.Enuns.TipoUsuarioEnum.Cozinha)
+                    {
+                        if (iten.IdUnidade == Controle.ControleAcesso.IdUnidade)
+                        {
+                            <div class="col-md-4" style="text-align:center; padding-top: 5px; font-size:50px;">
+                                <button class="btn btn-outline-dark col-sm-10 p-md-1" style="height:200px; font-size:35px;" onclick="Usuario.MonitorAdmin(@iten.IdUnidade,'@iten.Nome')">@iten.Nome</button>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="col-md-4" style="text-align:center; padding-top: 5px; font-size:50px;">
+                            <button class="btn btn-outline-dark col-sm-10 p-md-1" style="height:200px; font-size:35px;" onclick="Usuario.MonitorAdmin(@iten.IdUnidade,'@iten.Nome')">@iten.Nome</button>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    }
+
+    <!-- ---------------------------------------------- -->
+
+    @if (Controle.PerfilPFuncionalidade.Nome != "CADASTRAR SENHAS - MOTOBOY")
+    {
+        <footer class="border-top footer text-muted">
+            <div class="container-fluid" style="text-align:center">
+                &copy; 2019 - Mymonitor.com.br @*<a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>*@
+            </div>
+        </footer>
+    }
+
+    <!-- Modal para cadastrar número -->
+    <div class="modal fade" id="ModalCadastrarNumero" tabindex="-1" role="dialog" aria-labelledby="fatorFModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog border-dark">
+            <div class="modal-content" style="width: 200%; margin-left: -50%;">
+                <!-- Modal Header -->
+                <div id="mensagemModal" name="mensagem" style="display: none; background-color: #ff2d296b; text-align:center; height: 40px; padding-top: 5px; font-size: 20px;"><b>mensagem</b></div>
+
+                <div class="modal-header">
+                    <div class="col-md-11">
+                        <h3 class="modal-title">Cadastrar Número de Pedido&nbsp;-&nbsp;<span id="nomeCozinha"></span></h3>
+                    </div>
+                    <div class="col-md-1">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                </div>
+                <!-- Modal body -->
+                <!--------------------------------------------------->
+
+                <input type="hidden" id="IdEmpresa" value="@Controle.ControleAcesso.IdEmpresa" />
+                <input type="hidden" id="IdUnidade" value="@Controle.ControleAcesso.IdUnidade" />
+
+                <fieldset>
+                    <legend>@ViewBag.Title</legend>
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="form-group row col-md-12">
+                            <div class="form-group col-md-12">
+                                <Label class="control-label col-md-3">Número de pedido:</Label>
+                                <div class="col-md-12">
+                                    <input type="text" id="NumeroPedido" name="NumeroPedido" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <!--------------------------------------------------->
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <div class="col-md-12" style="text-align: right;">
+                        <button id="btnFecharNumeroPedido" type="button" class="btn btn-danger">&nbsp;&nbsp;&nbsp;Fechar&nbsp;&nbsp;&nbsp;</button>
+                        <button id="btnSalvarNumeroPedido" type="button" class="btn btn-outline-success">&nbsp;&nbsp;&nbsp;Salvar&nbsp;&nbsp;&nbsp;</button>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    @*<environment include="Development">*@
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+        <script src="~/js/Views/Usuario/Usuario.js"></script>
+        <script src="~/js/Views/Home/Home.js"></script>
+        <script src="~/lib/fontawesome/fontawesome-free-5.9.0-web/js/all.js"></script>
+    @*</environment>*@
+</body>
+</html>
+
+
+
+

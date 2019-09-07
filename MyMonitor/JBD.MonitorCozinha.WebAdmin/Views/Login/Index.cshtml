@@ -1,0 +1,50 @@
+﻿@model JBD.MonitorCozinha.WebAdmin.Models.UsuarioViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Monitor Cozinha</title>
+
+    @*<environment include="Development">*@
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link href="~/css/login.css" rel="stylesheet" />
+    @*</environment>*@
+</head>
+<body>
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <div id="mensagemModal" name="mensagemModal" style="display: none; background-color: #ff2d296b; text-align:center; height: 40px; padding-top: 5px; font-size: 20px;"><b>mensagem</b></div>
+            <div class="fadeIn first topUser">
+                <i class='fas fa-user-tie' style='font-size:50px'></i> </br>
+                <span style="font-size: 22px;">LOGAR NO MONITOR DE COZINHA</span>
+            </div>
+            <form>
+                <input type="text" id="userName" class="fadeIn second" name="userName" placeholder="Usuário">
+                <input type="password" id="password" class="fadeIn third" name="password" placeholder="Senha">
+                <input type="button" class="fadeIn fourth" value="Entrar" onclick="Usuario.Login();">
+            </form>
+            <div id="formFooter">
+                <a class="underlineHover" href="#">Esqueceu sua senha?</a>
+            </div>
+        </div>
+    </div>
+
+    @*<environment include="Development">*@
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+        <script src="~/lib/fontawesome/fontawesome-free-5.9.0-web/js/all.js"></script>
+        <script src="~/js/Views/Usuario/Usuario.js"></script>
+    @*</environment>*@
+</body>
+</html>
+
+
+
+

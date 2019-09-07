@@ -1,0 +1,53 @@
+﻿@model JBD.MonitorCozinha.WebAdmin.Models.EmpresaViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Monitor Cozinha</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    </environment>
+</head>
+<body>
+    <div class="container-fluid p-4" style="width: 90%;">
+        <div class="jumbotron row" id="TopoPesquisa">
+            <div class="col-md-12" style="text-align:center; padding-top: 5px; font-size:40px;">
+                <b>SEJA BEM VINDO AO MONITOR DE COZINHA</b>
+            </div>
+
+            @foreach (var iten in Model.Unidades)
+            {
+                <div class="col-md-12 form-group row" style="height: 300px; margin-top:100px;">
+                    <div class="col-md-4" style="text-align:center; padding-top: 5px; font-size:50px;">
+                        <button class="btn btn-outline-dark col-10 p-5" style="height:200px; font-size:35px;" onclick="Usuario.UnidadeAdmin(@iten.IdUnidade)">@iten.Nome<p>&nbsp;</p></button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container-fluid" style="text-align:center">
+            &copy; 2019 - JBD.MonitorCozinha.WebAdmin - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+        <script src="~/js/Views/Usuario/Usuario.js"></script>
+    </environment>
+</body>
+</html>
+
+
+
+

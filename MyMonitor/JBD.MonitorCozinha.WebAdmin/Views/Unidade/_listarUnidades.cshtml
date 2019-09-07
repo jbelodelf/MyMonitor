@@ -1,0 +1,65 @@
+﻿@model JBD.MonitorCozinha.WebAdmin.Models.EmpresaViewModel
+
+<table class="table table-striped table-bordered table-hover" id="tbListarUnidades">
+    <thead>
+        <tr>
+            <th>
+                Nome Unidade
+            </th>
+            <th>
+                CEP
+            </th>
+            <th>
+                Endereço
+            </th>
+            <th>
+                Bairro
+            </th>
+            <th>
+                Cidade
+            </th>
+            <th>
+                Estado
+            </th>
+            <th>
+                Pais
+            </th>
+            <th style="width:150px;"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Unidades)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CEP)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Endereco)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Bairro)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cidade)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pais)
+                </td>
+                <td>
+                    <a href="javascript:;" onclick="Unidade.Editar(@item.IdUnidade)" title="Editar unidade"><i class="fas fa-edit"></i></a>
+                    <a href="javascript:;" onclick="Unidade.Excluir(@item.IdUnidade)" title="Excluir unidade"><i class="fas fa-trash"></i></a>
+                    <span style="font-size:25px;">&nbsp;|&nbsp;</span>
+                    <a href="javascript:;" onclick="Unidade.ListarPessoa(@item.IdUnidade)" title="Lista de usuários"><i class='fas fa-user-plus'></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script src="~/lib/fontawesome/fontawesome-free-5.9.0-web/js/all.js"></script>
