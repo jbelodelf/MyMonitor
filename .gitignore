@@ -58,3 +58,11 @@ dkms.conf
 /MyMonitor/JBD.MonitorCozinha.Test.Admin/obj
 /MyMonitor/JBD.MonitorCozinha.WebAdmin/obj
 /MyMonitor/JBD.MonitorCozinha.WebApiAdmin/obj
+/MyMonitor/.vs/JBD.MonitorCozinha/v15
+/MyMonitor/JBD.MonitorCozinha.Application/bin/Debug/netcoreapp2.2
+/MyMonitor/JBD.MonitorCozinha.CrossCutting/bin/Debug/netcoreapp2.2
+/MyMonitor/JBD.MonitorCozinha.Data/bin/Debug/netcoreapp2.2
+/MyMonitor/JBD.MonitorCozinha.Domain/bin/Debug/netcoreapp2.2
+/MyMonitor/JBD.MonitorCozinha.Test.Admin/bin/Debug/netcoreapp2.2
+/MyMonitor/JBD.MonitorCozinha.WebAdmin/bin/Debug/netcoreapp2.2
+/MyMonitor/JBD.MonitorCozinha.WebApiAdmin/bin/Debug/netcoreapp2.2
