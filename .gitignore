@@ -66,3 +66,4 @@ dkms.conf
 /MyMonitor/JBD.MonitorCozinha.Test.Admin/bin/Debug/netcoreapp2.2
 /MyMonitor/JBD.MonitorCozinha.WebAdmin/bin/Debug/netcoreapp2.2
 /MyMonitor/JBD.MonitorCozinha.WebApiAdmin/bin/Debug/netcoreapp2.2
+/MyMonitor/.vs/config
