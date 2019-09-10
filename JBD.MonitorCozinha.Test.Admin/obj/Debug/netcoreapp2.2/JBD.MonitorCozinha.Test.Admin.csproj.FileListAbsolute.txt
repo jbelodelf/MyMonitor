@@ -1,0 +1,14 @@
+D:\Projetos\MyMonitor\MyMonitor\JBD.MonitorCozinha.Test.Admin\bin\Debug\netcoreapp2.2\xunit.runner.visualstudio.dotnetcore.testadapter.dll
+D:\Projetos\MyMonitor\MyMonitor\JBD.MonitorCozinha.Test.Admin\bin\Debug\netcoreapp2.2\xunit.runner.reporters.netcoreapp10.dll
+D:\Projetos\MyMonitor\MyMonitor\JBD.MonitorCozinha.Test.Admin\bin\Debug\netcoreapp2.2\xunit.runner.utility.netcoreapp10.dll
+D:\Projetos\MyMonitor\MyMonitor\JBD.MonitorCozinha.Test.Admin\bin\Debug\netcoreapp2.2\JBD.MonitorCozinha.Test.Admin.deps.json
+D:\Projetos\MyMonitor\MyMonitor\JBD.MonitorCozinha.Test.Admin\bin\Debug\netcoreapp2.2\JBD.MonitorCozinha.Test.Admin.runtimeconfig.json
+D:\Projetos\MyMonitor\MyMonitor\JBD.MonitorCozinha.Test.Admin\bin\Debug\netcoreapp2.2\JBD.MonitorCozinha.Test.Admin.runtimeconfig.dev.json
+D:\Projetos\MyMonitor\MyMonitor\JBD.MonitorCozinha.Test.Admin\bin\Debug\netcoreapp2.2\JBD.MonitorCozinha.Test.Admin.dll
+D:\Projetos\MyMonitor\MyMonitor\JBD.MonitorCozinha.Test.Admin\bin\Debug\netcoreapp2.2\JBD.MonitorCozinha.Test.Admin.pdb
+D:\Projetos\MyMonitor\MyMonitor\JBD.MonitorCozinha.Test.Admin\obj\Debug\netcoreapp2.2\JBD.MonitorCozinha.Test.Admin.csprojAssemblyReference.cache
+D:\Projetos\MyMonitor\MyMonitor\JBD.MonitorCozinha.Test.Admin\obj\Debug\netcoreapp2.2\JBD.MonitorCozinha.Test.Admin.csproj.CoreCompileInputs.cache
+D:\Projetos\MyMonitor\MyMonitor\JBD.MonitorCozinha.Test.Admin\obj\Debug\netcoreapp2.2\JBD.MonitorCozinha.Test.Admin.AssemblyInfoInputs.cache
+D:\Projetos\MyMonitor\MyMonitor\JBD.MonitorCozinha.Test.Admin\obj\Debug\netcoreapp2.2\JBD.MonitorCozinha.Test.Admin.AssemblyInfo.cs
+D:\Projetos\MyMonitor\MyMonitor\JBD.MonitorCozinha.Test.Admin\obj\Debug\netcoreapp2.2\JBD.MonitorCozinha.Test.Admin.dll
+D:\Projetos\MyMonitor\MyMonitor\JBD.MonitorCozinha.Test.Admin\obj\Debug\netcoreapp2.2\JBD.MonitorCozinha.Test.Admin.pdb

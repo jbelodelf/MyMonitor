@@ -67,3 +67,4 @@ dkms.conf
 /MyMonitor/JBD.MonitorCozinha.WebAdmin/bin/Debug/netcoreapp2.2
 /MyMonitor/JBD.MonitorCozinha.WebApiAdmin/bin/Debug/netcoreapp2.2
 /MyMonitor/.vs/config
+/.vs/JBD.MonitorCozinha/v15/Server/sqlite3/db.lock

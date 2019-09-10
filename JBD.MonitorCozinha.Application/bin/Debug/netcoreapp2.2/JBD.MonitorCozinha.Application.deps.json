@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v2.2",
+    "signature": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v2.2": {
+      "JBD.MonitorCozinha.Application/1.0.0": {
+        "dependencies": {
+          "JBD.MonitorCozinha.Domain": "1.0.0"
+        },
+        "runtime": {
+          "JBD.MonitorCozinha.Application.dll": {}
+        }
+      },
+      "JBD.MonitorCozinha.Domain/1.0.0": {
+        "runtime": {
+          "JBD.MonitorCozinha.Domain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "JBD.MonitorCozinha.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "JBD.MonitorCozinha.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

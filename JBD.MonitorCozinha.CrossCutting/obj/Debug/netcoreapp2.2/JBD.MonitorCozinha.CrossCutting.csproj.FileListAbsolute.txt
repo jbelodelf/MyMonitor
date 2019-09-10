@@ -1,0 +1,9 @@
+D:\Projetos\MyMonitor\MyMonitor\JBD.MonitorCozinha.CrossCutting\bin\Debug\netcoreapp2.2\JBD.MonitorCozinha.CrossCutting.deps.json
+D:\Projetos\MyMonitor\MyMonitor\JBD.MonitorCozinha.CrossCutting\bin\Debug\netcoreapp2.2\JBD.MonitorCozinha.CrossCutting.dll
+D:\Projetos\MyMonitor\MyMonitor\JBD.MonitorCozinha.CrossCutting\bin\Debug\netcoreapp2.2\JBD.MonitorCozinha.CrossCutting.pdb
+D:\Projetos\MyMonitor\MyMonitor\JBD.MonitorCozinha.CrossCutting\obj\Debug\netcoreapp2.2\JBD.MonitorCozinha.CrossCutting.csprojAssemblyReference.cache
+D:\Projetos\MyMonitor\MyMonitor\JBD.MonitorCozinha.CrossCutting\obj\Debug\netcoreapp2.2\JBD.MonitorCozinha.CrossCutting.csproj.CoreCompileInputs.cache
+D:\Projetos\MyMonitor\MyMonitor\JBD.MonitorCozinha.CrossCutting\obj\Debug\netcoreapp2.2\JBD.MonitorCozinha.CrossCutting.AssemblyInfoInputs.cache
+D:\Projetos\MyMonitor\MyMonitor\JBD.MonitorCozinha.CrossCutting\obj\Debug\netcoreapp2.2\JBD.MonitorCozinha.CrossCutting.AssemblyInfo.cs
+D:\Projetos\MyMonitor\MyMonitor\JBD.MonitorCozinha.CrossCutting\obj\Debug\netcoreapp2.2\JBD.MonitorCozinha.CrossCutting.dll
+D:\Projetos\MyMonitor\MyMonitor\JBD.MonitorCozinha.CrossCutting\obj\Debug\netcoreapp2.2\JBD.MonitorCozinha.CrossCutting.pdb

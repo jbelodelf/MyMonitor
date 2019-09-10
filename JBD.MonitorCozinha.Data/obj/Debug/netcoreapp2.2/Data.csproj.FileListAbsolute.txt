@@ -1,0 +1,12 @@
+D:\Projetos\MyMonitor\MyMonitor\JBD.MonitorCozinha.Data\bin\Debug\netcoreapp2.2\Data.deps.json
+D:\Projetos\MyMonitor\MyMonitor\JBD.MonitorCozinha.Data\bin\Debug\netcoreapp2.2\Data.dll
+D:\Projetos\MyMonitor\MyMonitor\JBD.MonitorCozinha.Data\bin\Debug\netcoreapp2.2\Data.pdb
+D:\Projetos\MyMonitor\MyMonitor\JBD.MonitorCozinha.Data\bin\Debug\netcoreapp2.2\JBD.MonitorCozinha.Domain.dll
+D:\Projetos\MyMonitor\MyMonitor\JBD.MonitorCozinha.Data\bin\Debug\netcoreapp2.2\JBD.MonitorCozinha.Domain.pdb
+D:\Projetos\MyMonitor\MyMonitor\JBD.MonitorCozinha.Data\obj\Debug\netcoreapp2.2\Data.csprojAssemblyReference.cache
+D:\Projetos\MyMonitor\MyMonitor\JBD.MonitorCozinha.Data\obj\Debug\netcoreapp2.2\Data.csproj.CoreCompileInputs.cache
+D:\Projetos\MyMonitor\MyMonitor\JBD.MonitorCozinha.Data\obj\Debug\netcoreapp2.2\Data.AssemblyInfoInputs.cache
+D:\Projetos\MyMonitor\MyMonitor\JBD.MonitorCozinha.Data\obj\Debug\netcoreapp2.2\Data.AssemblyInfo.cs
+D:\Projetos\MyMonitor\MyMonitor\JBD.MonitorCozinha.Data\obj\Debug\netcoreapp2.2\Data.csproj.CopyComplete
+D:\Projetos\MyMonitor\MyMonitor\JBD.MonitorCozinha.Data\obj\Debug\netcoreapp2.2\Data.dll
+D:\Projetos\MyMonitor\MyMonitor\JBD.MonitorCozinha.Data\obj\Debug\netcoreapp2.2\Data.pdb
