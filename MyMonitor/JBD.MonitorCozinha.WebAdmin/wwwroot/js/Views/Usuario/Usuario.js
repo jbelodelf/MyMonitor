@@ -13,6 +13,7 @@
             , cache: false
         }).done(function (data) {
             if (data.logado) {
+
                 window.location.href = "Login/Home";
             }
             else {
@@ -198,6 +199,9 @@
 }
 
 $(document).ready(function () {
+
+    myFunction();
+
     $("#btAdmin").on("click", function () {
         window.location.href = "/MonitorAdmin";
     });
@@ -211,3 +215,38 @@ $(document).ready(function () {
     $("#CadastroSenhaMotoboy").css('height', (altura - 230));
     //$("#CadastroSenhaMotoboy").css('width', (largura - 17));
 })
+
+function myFunction() {
+    //if ((navigator.userAgent.indexOf("Opera") || navigator.userAgent.indexOf('OPR')) != -1) {
+    //    alert('Opera');
+    //}
+    //else if (navigator.userAgent.indexOf("Chrome") != -1) {
+    //    alert('Chrome');
+    //}
+    //else if (navigator.userAgent.indexOf("Safari") != -1) {
+    //    alert('Safari');
+    //}
+    //else if (navigator.userAgent.indexOf("Firefox") != -1) {
+    //    alert('Firefox');
+    //}
+    //else if ((navigator.userAgent.indexOf("MSIE") != -1) || (!!document.documentMode == true)) {
+    //    alert('IE');
+    //}
+    //else {
+    //    alert('unknown');
+    //}
+
+    if ((navigator.userAgent.indexOf("MSIE") != -1) || (!!document.documentMode == true)) {
+        $("#ModalNavegador").modal('show');
+    }
+    else if (!!navigator.userAgent.match(/Trident\/7\./) || window.navigator.userAgent.indexOf("Edge") > -1) {
+        $("#ModalNavegador").modal('show');
+    }
+    //else if (navigator.userAgent.indexOf("Chrome") != -1) {
+    //    alert('Chrome');
+    //}
+    //else {
+    //    alert('Este navegador não é o Chrome');
+    //}
+
+}
