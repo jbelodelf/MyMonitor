@@ -36,7 +36,7 @@
     },
 
     Salvar: function () {
-        var isValido = true;     
+        var isValido = true;
 
         if ($("#idEmpresaNum").val() == "") {
             isValido = false;
@@ -103,7 +103,7 @@
                 var url = "/Unidade/SalvarUnidade";
                 var cep = $("#CEP").val().replace(/\D/g, '');
 
-                unidade = {                  
+                unidade = {
                     IdUnidade: $("#IdUnidade").val(),
                     IdEmpresa: $("#idEmpresaNum").val(),
                     Nome: $("#Nome").val(),
@@ -120,33 +120,33 @@
                     Email: $("#Email").val(),
                     DataCadastro: $("#DataCadastro").val()
                 },
-                $.ajax({
-                    url: url
-                    , datatype: "json"
-                    , type: "POST"
-                    , async: false
-                    , data: { unidade: unidade }
-                    , cache: false
-                }).done(function (data) {
-                    if (data.retorno == "200") {
-                        $("#mensagemModal").text(data.mensagem).show();
-                        window.setTimeout(function () {                           
-                            $("#mensagemModal").text("").hide();       
-                            var numero = unidade.IdEmpresa;
-                            window.location.href = "Index?IdEmpresa=" + numero ;
-                        }, 3000);
-                    }
-                    else {
-                        $("#mensagemModal").text('Erro:' + data.mensagem).show();
-                        window.setTimeout(function () {
-                            $("#mensagemModal").text("").hide();
-                            window.location.href = "/Unidade/Index";
-                        }, 3000);
-                        return;
-                    }
-                }).fail(function (jqXHR, exception) {
-                    TratamentoDeErro(jqXHR, exception);
-                });
+                    $.ajax({
+                        url: url
+                        , datatype: "json"
+                        , type: "POST"
+                        , async: false
+                        , data: { unidade: unidade }
+                        , cache: false
+                    }).done(function (data) {
+                        if (data.retorno == "200") {
+                            $("#mensagemModal").text(data.mensagem).show();
+                            window.setTimeout(function () {
+                                $("#mensagemModal").text("").hide();
+                                var numero = unidade.IdEmpresa;
+                                window.location.href = "Index?IdEmpresa=" + numero;
+                            }, 3000);
+                        }
+                        else {
+                            $("#mensagemModal").text('Erro:' + data.mensagem).show();
+                            window.setTimeout(function () {
+                                $("#mensagemModal").text("").hide();
+                                window.location.href = "/Unidade/Index";
+                            }, 3000);
+                            return;
+                        }
+                    }).fail(function (jqXHR, exception) {
+                        TratamentoDeErro(jqXHR, exception);
+                    });
             }
         });
     },
@@ -195,6 +195,8 @@
 }
 
 $(document).ready(function () {
+
+    montaPais();
 
     $(".cepClass").mask("99999-999");
 
@@ -299,54 +301,219 @@ $(document).ready(function () {
         $("#Estado").val("");
     }
 
+
     function montaPais() {
-        $.ajax({
-            type: 'GET',
-            url: 'http://api.londrinaweb.com.br/PUC/Paisesv2/0/1000',
-            contentType: "application/json; charset=utf-8",
-            dataType: "jsonp",
-            async: false
-        }).done(function (response) {
+        var paises = {
+            01: { Pais: "Africa do Sul" },
+            02: { Pais: "Albânia" },
+            03: { Pais: "Alemanha" },
+            04: { Pais: "Andorra" },
+            05: { Pais: "Angola" },
+            06: { Pais: "Anguilla" },
+            07: { Pais: "Antigua" },
+            08: { Pais: "Arábia Saudita" },
+            09: { Pais: "Argentina" },
+            10: { Pais: "Armênia" },
+            11: { Pais: "Aruba" },
+            12: { Pais: "Austrália" },
+            13: { Pais: "Áustria" },
+            14: { Pais: "Azerbaijão" },
+            15: { Pais: "Bahamas" },
+            16: { Pais: "Bahrein" },
+            17: { Pais: "Bangladesh" },
+            18: { Pais: "Barbados" },
+            19: { Pais: "Bélgica" },
+            20: { Pais: "Benin" },
+            21: { Pais: "Bermudas" },
+            22: { Pais: "Botsuana" },
+            23: { Pais: "Brasil" },
+            24: { Pais: "Brunei" },
+            25: { Pais: "Bulgária" },
+            26: { Pais: "Burkina Fasso" },
+            27: { Pais: "botão" },
+            28: { Pais: "Cabo Verde" },
+            29: { Pais: "Camarões" },
+            30: { Pais: "Camboja" },
+            31: { Pais: "Canadá" },
+            32: { Pais: "Cazaquistão" },
+            33: { Pais: "Chade" },
+            34: { Pais: "Chile" },
+            35: { Pais: "China" },
+            36: { Pais: "Cidade do Vaticano" },
+            37: { Pais: "Colômbia" },
+            38: { Pais: "Congo" },
+            39: { Pais: "Coréia do Sul" },
+            40: { Pais: "Costa do Marfim" },
+            41: { Pais: "Costa Rica" },
+            42: { Pais: "Croácia" },
+            43: { Pais: "Dinamarca" },
+            44: { Pais: "Djibuti" },
+            45: { Pais: "Dominica" },
+            46: { Pais: "EUA" },
+            47: { Pais: "Egito" },
+            48: { Pais: "El Salvador" },
+            49: { Pais: "Emirados Árabes" },
+            50: { Pais: "Equador" },
+            51: { Pais: "Eritréia" },
+            52: { Pais: "Escócia" },
+            53: { Pais: "Eslováquia" },
+            54: { Pais: "Eslovênia" },
+            55: { Pais: "Espanha" },
+            56: { Pais: "Estônia" },
+            57: { Pais: "Etiópia" },
+            58: { Pais: "Fiji" },
+            59: { Pais: "Filipinas" },
+            60: { Pais: "Finlândia" },
+            61: { Pais: "França" },
+            62: { Pais: "Gabão" },
+            63: { Pais: "Gâmbia" },
+            64: { Pais: "Gana" },
+            65: { Pais: "Geórgia" },
+            66: { Pais: "Gibraltar" },
+            67: { Pais: "Granada" },
+            68: { Pais: "Grécia" },
+            69: { Pais: "Guadalupe" },
+            70: { Pais: "Guam" },
+            71: { Pais: "Guatemala" },
+            72: { Pais: "Guiana" },
+            73: { Pais: "Guiana Francesa" },
+            74: { Pais: "Guiné-bissau" },
+            75: { Pais: "Haiti" },
+            76: { Pais: "Holanda" },
+            77: { Pais: "Honduras" },
+            78: { Pais: "Hong Kong" },
+            79: { Pais: "Hungria" },
+            80: { Pais: "Iêmen" },
+            81: { Pais: "Ilhas Cayman" },
+            82: { Pais: "Ilhas Cook" },
+            83: { Pais: "Ilhas Curaçao" },
+            84: { Pais: "Ilhas Marshall" },
+            85: { Pais: "Ilhas Turks & Caicos" },
+            86: { Pais: "Ilhas Virgens (brit.)" },
+            87: { Pais: "Ilhas Virgens(amer.)" },
+            88: { Pais: "Ilhas Wallis e Futuna" },
+            89: { Pais: "Índia" },
+            90: { Pais: "Indonésia" },
+            91: { Pais: "Inglaterra" },
+            92: { Pais: "Irlanda" },
+            93: { Pais: "Islândia" },
+            94: { Pais: "Israel" },
+            95: { Pais: "Itália" },
+            96: { Pais: "Jamaica" },
+            97: { Pais: "Japão" },
+            98: { Pais: "Jordânia" },
+            99: { Pais: "Kuwait" },
+            100: { Pais: "Latvia" },
+            101: { Pais: "Líbano" },
+            102: { Pais: "Liechtenstein" },
+            103: { Pais: "Lituânia" },
+            104: { Pais: "Luxemburgo" },
+            105: { Pais: "Macau" },
+            106: { Pais: "Macedônia" },
+            107: { Pais: "Madagascar" },
+            108: { Pais: "Malásia" },
+            109: { Pais: "Malaui" },
+            110: { Pais: "Mali" },
+            111: { Pais: "Malta" },
+            112: { Pais: "Marrocos" },
+            113: { Pais: "Martinica" },
+            114: { Pais: "Mauritânia" },
+            115: { Pais: "Mauritius" },
+            116: { Pais: "México" },
+            117: { Pais: "Moldova" },
+            118: { Pais: "Mônaco" },
+            119: { Pais: "Montserrat" },
+            120: { Pais: "Nepal" },
+            121: { Pais: "Nicarágua" },
+            122: { Pais: "Niger" },
+            123: { Pais: "Nigéria" },
+            124: { Pais: "Noruega" },
+            125: { Pais: "Nova Caledônia" },
+            126: { Pais: "Nova Zelândia" },
+            127: { Pais: "Omã" },
+            128: { Pais: "Palau" },
+            129: { Pais: "Panamá" },
+            130: { Pais: "Papua-nova Guiné" },
+            131: { Pais: "Paquistão" },
+            132: { Pais: "Peru" },
+            133: { Pais: "Polinésia Francesa" },
+            134: { Pais: "Polônia" },
+            135: { Pais: "Porto Rico" },
+            136: { Pais: "Portugal" },
+            137: { Pais: "Qatar" },
+            138: { Pais: "Quênia" },
+            139: { Pais: "Rep. Dominicana" },
+            140: { Pais: "Rep. Tcheca" },
+            141: { Pais: "Reunion" },
+            142: { Pais: "Romênia" },
+            143: { Pais: "Ruanda" },
+            144: { Pais: "Rússia" },
+            145: { Pais: "Saipan" },
+            146: { Pais: "Samoa Americana" },
+            147: { Pais: "Senegal" },
+            148: { Pais: "Serra Leone" },
+            149: { Pais: "Seychelles" },
+            150: { Pais: "Singapura" },
+            151: { Pais: "Síria" },
+            152: { Pais: "Sri Lanka" },
+            153: { Pais: "St. Kitts & Nevis" },
+            154: { Pais: "St. Lúcia" },
+            155: { Pais: "St. Vincent" },
+            156: { Pais: "Sudão" },
+            157: { Pais: "Suécia" },
+            158: { Pais: "Suiça" },
+            159: { Pais: "Suriname" },
+            160: { Pais: "Tailândia" },
+            161: { Pais: "Taiwan" },
+            162: { Pais: "Tanzânia" },
+            163: { Pais: "Togo" },
+            164: { Pais: "Trinidad & Tobago" },
+            165: { Pais: "Tunísia" },
+            166: { Pais: "Turquia" },
+            167: { Pais: "Ucrânia" },
+            168: { Pais: "Uganda" },
+            169: { Pais: "Uruguai" },
+            170: { Pais: "Venezuela" },
+            171: { Pais: "Vietnã" },
+            172: { Pais: "Zaire" },
+            173: { Pais: "Zâmbia" },
+            174: { Pais: "Zimbábue" },
+        };
 
-            paises = '';
 
-            $.each(response, function (p, pais) {
+        $.each(paises, function (p, pais) {
 
-                //if (pais.Pais == "") {
+            //if (pais.Pais == "") {
 
-                //    paises += '<option value="' + pais.Sigla + '">' + pais.Pais + '</option>';
-                //    //paises += '<option value="' + pais.Sigla + '" selected>' + pais.Pais + '</option>';
-                //} else {
-                //    paises += '<option value="' + pais.Pais + '" selected>' + pais.Pais + '</option>';
-                //    //paises += '<option value="' + pais.Sigla + '">' + pais.Pais + '</option>';
-                //}
-                paises += '<option value="' + pais.Pais + '">' + pais.Pais + '</option>';
-
-            });
-
-            // PREENCHE O SELECT DE PAÍSES
-            $('#Pais').html(paises);
-
-            //// PREENCHE O SELECT DE ACORDO COM O VALOR DO PAÍS
-            //montaUF($('#pais').val());
-
-           //VERIFICA A MUDANÇA DO VALOR DO SELECT DE PAÍS
-            $('#Pais').change(function () {
-
-                //$('#paisText').append();
-
-                //if ($('#pais').val()) {
-                //    // SE O VALOR FOR BR E CONFIRMA OS SELECTS
-                //    $('#estado').remove();
-                //    $('#cidade').remove();
-                //$('#campo_estado').append('<select id="estado"></select>');
-                //    $('#campo_cidade').append('<select id="cidade"></select>');
-
-                //} 
-            })
+            //    paises += '<option value="' + pais.Sigla + '">' + pais.Pais + '</option>';
+            //    //paises += '<option value="' + pais.Sigla + '" selected>' + pais.Pais + '</option>';
+            //} else {
+            //    paises += '<option value="' + pais.Pais + '" selected>' + pais.Pais + '</option>';
+            //    //paises += '<option value="' + pais.Sigla + '">' + pais.Pais + '</option>';
+            //}
+            paises += '<option value="' + pais.Pais + '">' + pais.Pais + '</option>';
 
         });
-    }
 
-    montaPais();
+        // PREENCHE O SELECT DE PAÍSES
+        $('#Pais').html(paises);
+
+        //// PREENCHE O SELECT DE ACORDO COM O VALOR DO PAÍS
+        //montaUF($('#pais').val());
+
+        //VERIFICA A MUDANÇA DO VALOR DO SELECT DE PAÍS
+        $('#Pais').change(function () {
+
+            //$('#paisText').append();
+
+            //if ($('#pais').val()) {
+            //    // SE O VALOR FOR BR E CONFIRMA OS SELECTS
+            //    $('#estado').remove();
+            //    $('#cidade').remove();
+            //$('#campo_estado').append('<select id="estado"></select>');
+            //    $('#campo_cidade').append('<select id="cidade"></select>');
+
+            //} 
+        });
+    }
 });
