@@ -225,12 +225,12 @@ function myFunction() {
     else if (navigator.userAgent.indexOf("Firefox") != -1) {
         $("#ModalNavegador").modal('show');
     }
-    else if (navigator.userAgent.indexOf("Safari") != -1) {
-        $("#ModalNavegador").modal('show');
-    }
-    else if ((navigator.userAgent.indexOf("Opera") || navigator.userAgent.indexOf('OPR')) != -1) {
-        $("#ModalNavegador").modal('show');
-    }
+    //else if (navigator.userAgent.indexOf("Safari") != -1) {
+    //    $("#ModalNavegador").modal('show');
+    //}
+    //else if ((navigator.userAgent.indexOf("Opera") || navigator.userAgent.indexOf('OPR')) != -1) {
+    //    $("#ModalNavegador").modal('show');
+    //}
     //else if (navigator.userAgent.indexOf("Chrome") != -1) {
     //    alert('Chrome');
     //}

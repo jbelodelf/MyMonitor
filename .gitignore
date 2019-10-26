@@ -67,3 +67,8 @@ dkms.conf
 /MyMonitor/JBD.MonitorCozinha.WebAdmin/bin/Debug/netcoreapp2.2
 /MyMonitor/JBD.MonitorCozinha.WebApiAdmin/bin/Debug/netcoreapp2.2
 /MyMonitor/.vs/config
+/MyMonitor/.vs/JBD.MonitorCozinha/DesignTimeBuild/.dtbcache
+/MyMonitor/JBD.MonitorCozinha.Data/bin/Release/netcoreapp2.2
+/MyMonitor/JBD.MonitorCozinha.CrossCutting/bin/Release/netcoreapp2.2
+/MyMonitor/JBD.MonitorCozinha.Application/bin/Release/netcoreapp2.2
+/MyMonitor/JBD.MonitorCozinha.Domain/bin/Release/netcoreapp2.2
