@@ -19,6 +19,7 @@ namespace JBD.MonitorCozinha.WebAdmin.Services
             _mapper = mapper;
         }
 
+        #region Usuário
         public List<UsuarioViewModel> ListarUsuarios()
         {
             using (HttpClient client = new HttpClient())
@@ -92,10 +93,26 @@ namespace JBD.MonitorCozinha.WebAdmin.Services
             }
         }
 
+        public UsuarioViewModel UsuarioByUsuerName(string userName)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                ///api/Usuario/UsuarioByUsuerName/{userName}/{senha}
+                ServiceBase(client);
+                HttpResponseMessage response = client.GetAsync("UsuarioByUsuerName/" + userName ).Result;
+                string stringData = response.Content.ReadAsStringAsync().Result;
+                UsuarioDTO data = JsonConvert.DeserializeObject<UsuarioDTO>(stringData);
+
+                var usuarioModel = _mapper.Map<UsuarioViewModel>(data);
+                return usuarioModel;
+            }
+        }
+        #endregion
+
         public void ServiceBase(HttpClient client)
         {
-            //client.BaseAddress = new Uri("http://localhost:52936/api/Usuario/");
-            client.BaseAddress = new Uri("http://www.apimymonitor.com.br/api/Usuario/"); 
+            client.BaseAddress = new Uri("http://localhost:52936/api/Usuario/");
+            //client.BaseAddress = new Uri("http://www.apimymonitor.com.br/api/Usuario/"); 
             MediaTypeWithQualityHeaderValue contentType = new MediaTypeWithQualityHeaderValue("application/json");
             client.DefaultRequestHeaders.Accept.Add(contentType);
         }

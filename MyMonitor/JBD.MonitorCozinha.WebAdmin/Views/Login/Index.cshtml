@@ -31,10 +31,48 @@
                 <input type="button" class="fadeIn fourth" value="Entrar" onclick="Usuario.Login();">
             </form>
             <div id="formFooter">
-                <a class="underlineHover" href="#">Esqueceu sua senha?</a>
+                <a class="underlineHover" href="#" onclick="(Usuario.LembreteSenha())">Esqueceu sua senha?</a>
             </div>
         </div>
     </div>
+
+    <!-- Início Modal para Lembrete de Senha -->
+    <div class="modal fade" id="ModalLembreteSenha" tabindex="-1" role="dialog" aria-labelledby="fatorFModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog border-dark">
+            <div class="modal-content" style="width: 200%; margin-left: -50%; margin-top: 50%;">
+                <div class="modal-header">
+                    <div class="col-md-11">
+                        <h3 class="modal-title">ALTERAR MINHA SENHA</h3>
+                    </div>
+                    <div class="col-md-1">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                </div>
+                <!-- Modal body -->
+                <fieldset>
+                    <div class="form-horizontal">
+                        <div>&ensp;</div>
+                        <div class="form-group row col-md-12">
+                            <div class="form-group col-md-4">
+                                <div class="col-md-12">
+                                    <input type="text" id="NomeUsuario" name="NomeUsuario" placeholder="Usário" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group col-md-5">
+                                <div class="col-md-12">
+                                    <input type="text" id="EmailPF" name="EmailPF" placeholder="E-mail" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <input type="button" class="fadeIn fourth" value="Envir" onclick="Usuario.EmailLembreteSenha();">
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+    <!-- Fim da Modal para Lembrete de Senha-->
 
     <!-- Início Modal para mensagem do navegador -->
     <div class="modal fade" id="ModalNavegador" tabindex="-1" role="dialog" aria-labelledby="fatorFModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
@@ -65,7 +103,6 @@
         </div>
     </div>
     <!-- Fim da Modal para mensagem do navegador-->
-
     @*<environment include="Development">*@
     <script src="~/lib/jquery/dist/jquery.js" asp-append-version="true"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js" asp-append-version="true"></script>

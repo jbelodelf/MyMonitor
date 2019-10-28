@@ -97,8 +97,8 @@ namespace JBD.MonitorCozinha.WebAdmin.Services
 
         public void ServiceBase(HttpClient client)
         {
-            //client.BaseAddress = new Uri("http://localhost:52936/api/Unidade/");
-            client.BaseAddress = new Uri("http://www.apimymonitor.com.br/api/Unidade/");
+            client.BaseAddress = new Uri("http://localhost:52936/api/Unidade/");
+            //client.BaseAddress = new Uri("http://www.apimymonitor.com.br/api/Unidade/");
             MediaTypeWithQualityHeaderValue contentType = new MediaTypeWithQualityHeaderValue("application/json");
             client.DefaultRequestHeaders.Accept.Add(contentType);
         }

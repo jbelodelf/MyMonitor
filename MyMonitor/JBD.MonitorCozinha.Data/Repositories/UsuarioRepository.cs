@@ -52,6 +52,19 @@ namespace Data.Repositories
             return usuario;
         }
 
+        public UsuarioEntity ObterUsuarioByUserName(string userName)
+        {
+            UsuarioEntity usuario = new UsuarioEntity();
+            Expression<Func<UsuarioEntity, bool>> expressionFiltro = (a => a.IdStatus == (int)StatusEnum.Ativo && a.UserName.Trim() == userName.Trim());
+            string[] includes = new string[] { "Pessoa" };
+
+            using (var rep = new RepositoryBase<UsuarioEntity>())
+            {
+                usuario = rep.Select(expressionFiltro, includes).FirstOrDefault();
+            }
+            return usuario;
+        }
+
         //Save Usuario
         public UsuarioEntity Salvar(UsuarioEntity usuario)
         {
@@ -90,6 +103,5 @@ namespace Data.Repositories
             }
             return usuario;
         }
-
     }
 }

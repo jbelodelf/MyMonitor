@@ -28,6 +28,59 @@
         });
     },
 
+    EmailLembreteSenha: function () {
+        var userName = $("#NomeUsuario").val();
+        var emailPF = $("#EmailPF").val();
+
+        var url = "/Login/EmailLembreteSenha";
+        $.ajax({
+            url: url
+            , datatype: "json"
+            , type: "POST"
+            , async: false
+            , data: { UserName: userName, Email: emailPF }
+            , cache: false
+        }).done(function (data) {
+            
+
+        }).fail(function (jqXHR, exception) {
+            TratamentoDeErro(jqXHR, exception);
+        });
+    },
+
+    AlterarSenha: function () {
+        var password = $("#Password").val();
+        var idUsuario = $("#idUsuario").val();
+
+        var url = "/Login/NovaSenha";
+        $.ajax({
+            url: url
+            , datatype: "json"
+            , type: "POST"
+            , async: false
+            , data: { Password: password, IdUsuario: idUsuario }
+            , cache: false
+        }).done(function (data) {
+            if (data.retorno == "200") {
+                $("#mensagem").text(data.mensagem).show();
+                window.setTimeout(function () {
+                    $("#mensagem").text("").hide();
+                    window.location.href = "/Login";
+                }, 3000);
+            }
+            else {
+                $("#mensagem").text('Erro:' + data.mensagem).show();
+                window.setTimeout(function () {
+                    $("#mensagem").text("").hide();
+                    window.location.href = "/Login";
+                }, 3000);
+                return;
+            }
+        }).fail(function (jqXHR, exception) {
+            TratamentoDeErro(jqXHR, exception);
+        });
+    },
+
     Listar: function () {
         $("body").css("padding-top", "2px", "!important");
         $("#TopoPesquisa").css("margin-left", "5px");
@@ -195,11 +248,31 @@
     MonitorAdmin: function (idUnidade, nomeUnidade) {
         $("#IdUnidade").val(idUnidade);
         window.location.href = "/MonitorAdmin/Index?IdUnidade=" + idUnidade + "&NomeUnidade=" + nomeUnidade;
+    },
+
+    LembreteSenha: function () {
+        $("#ModalLembreteSenha").modal('show');
+    },
+
+    ValidaSenhaDigitada() {
+        password1 = $("#Password").val();
+        password2 = $("#Password2").val();
+
+        if (password1 != password2) {
+            $("#mensagem").text("Senha não confere, digite novamente!!!").show();
+            window.setTimeout(function () {
+                $("#mensagem").text("").hide();
+            }, 3000);
+        }
+        else {
+            Usuario.AlterarSenha();
+        }
     }
 }
 
 $(document).ready(function () {
 
+    //Verifica se está sendo usado o IE, Edge ou Firefox
     myFunction();
 
     $("#btAdmin").on("click", function () {

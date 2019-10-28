@@ -40,7 +40,6 @@ namespace JBD.MonitorCozinha.WebAdmin.Controllers
 
             //var Nomeaqui = nome.RazaoSocial;
             unidadeViewModel.NomeEmpresa = nome;
-          
 
             return View(unidadeViewModel);
         }
@@ -49,12 +48,9 @@ namespace JBD.MonitorCozinha.WebAdmin.Controllers
         {
             var empresaViewModel = new EmpresaViewModel();
 
-
             if (nomeUnidade != null)
             {
                 EmpresaServiceWeb unidadeServiceWeb = new EmpresaServiceWeb(_mapper);
-                //List<EmpresaViewModel> empresaViewModel = new List<EmpresaViewModel>();
-
                 var empresaVM = unidadeServiceWeb.ObterEmpresa(IdEmpresa);
 
                 empresaViewModel = empresaVM;               
@@ -64,21 +60,16 @@ namespace JBD.MonitorCozinha.WebAdmin.Controllers
                 empresaViewModel.Unidades.AddRange(unidades);
 
                 return PartialView("~/Views/Unidade/_listarUnidades.cshtml", empresaViewModel);
-
             }
             else
             {
-
                 // empresaViewModel = new EmpresaViewModel();
                 if (IdEmpresa > 0)
                 {
                     empresaViewModel = ObterListaUnidades(IdEmpresa);
                 }
-
             }
             return PartialView("~/Views/Unidade/_listarUnidades.cshtml", empresaViewModel);
-
-
         }
 
         // GET: Unidade/Details/5
@@ -116,7 +107,7 @@ namespace JBD.MonitorCozinha.WebAdmin.Controllers
                         IdPessoa = 0,
                         IdTipo = TipoUsuarioEnum.Cozinha,
                         IdStatus = (int)StatusEnum.Ativo,
-                        UserName = "cozinha",
+                        UserName = "cozinha" + unidade.IdUnidade.ToString(),
                         Password = GeraradorDeHash.GerarHash256(padraoPassword),
                         DataCadastro = DateTime.Now,
                         Pessoa = null,
@@ -156,12 +147,10 @@ namespace JBD.MonitorCozinha.WebAdmin.Controllers
         // GET: Unidade/Edit/5
         public ActionResult EditarUnidade(int id)
         {
-
             UnidadeServiceWeb unidadeServiceWeb = new UnidadeServiceWeb(_mapper);
             UnidadeViewModel unidadeVM = new UnidadeViewModel();
 
             unidadeVM = unidadeServiceWeb.ObterUnidade(id);
-
 
             return Json(new { retorno = 200, data = unidadeVM });
         }
@@ -174,7 +163,6 @@ namespace JBD.MonitorCozinha.WebAdmin.Controllers
             try
             {
                 // TODO: Add update logic here
-
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -197,7 +185,6 @@ namespace JBD.MonitorCozinha.WebAdmin.Controllers
             try
             {
                 // TODO: Add delete logic here
-
                 return RedirectToAction(nameof(Index));
             }
             catch

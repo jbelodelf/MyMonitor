@@ -1,10 +1,6 @@
 ﻿using AutoMapper;
 using JBD.MonitorCozinha.Domain.DTOS;
 using JBD.MonitorCozinha.Domain.Entitys;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace JBD.MonitorCozinha.WebApiAdmin.Mappings
 {
@@ -22,6 +18,7 @@ namespace JBD.MonitorCozinha.WebApiAdmin.Mappings
             CreateMap<UnidadeEntity, UnidadeDTO>().ReverseMap();
             CreateMap<UsuarioEntity, UsuarioDTO>().ReverseMap();
             CreateMap<TipoUsuarioEntity, TipoUsuarioDTO>().ReverseMap();
+            CreateMap<LembreteSenhaEntity, LembreteSenhaDTO>().ReverseMap();
         }
 
     }

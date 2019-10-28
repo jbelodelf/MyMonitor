@@ -48,18 +48,21 @@ namespace JBD.MonitorCozinha.WebApiAdmin
             services.AddSingleton<IUnidadeApp, UnidadeRepositoryApp>();
             services.AddSingleton<IUsuarioApp, UsuarioRepositoryApp>();
             services.AddSingleton<IPessoaApp, PessoaRepositoryApp>();
+            services.AddSingleton<ILembreteSenhaApp, LembreteSenhaRepositoryApp>();
 
             services.AddSingleton<IEmpresaService, EmpresaService>();
             services.AddSingleton<INumeroPedidoService, NumeroPedidoService>();
             services.AddSingleton<IUnidadeService, UnidadeService>();
             services.AddSingleton<IUsuarioService, UsuarioService>();
             services.AddSingleton<IPessoaService, PessoaService>();
+            services.AddSingleton<ILembreteSenhaService, LembreteSenhaService>();
 
             services.AddSingleton<IEmpresaRepository, EmpresaRepository>();
             services.AddSingleton<INumeroPedidoRepository, NumeroPedidoRepository>();
             services.AddSingleton<IUnidadeRepository, UnidadeRepository>();
             services.AddSingleton<IUsuarioRepository, UsuarioRepository>();
             services.AddSingleton<IPessoaRepository, PessoaRepository>();
+            services.AddSingleton<ILembreteSenhaRepository, LembreteSenhaRepository>();
 
             services.AddSwaggerGen(c =>
             {
