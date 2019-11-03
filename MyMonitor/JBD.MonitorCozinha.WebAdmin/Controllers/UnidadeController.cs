@@ -197,7 +197,6 @@ namespace JBD.MonitorCozinha.WebAdmin.Controllers
 
         private EmpresaViewModel ObterListaUnidades(int IdEmpresa)
         {
-            //UnidadeServiceWeb unidadeServiceWeb = new UnidadeServiceWeb(_mapper);
             EmpresaServiceWeb unidadeServiceWeb = new EmpresaServiceWeb(_mapper);
 
             EmpresaViewModel unidadesViewModel = new EmpresaViewModel();

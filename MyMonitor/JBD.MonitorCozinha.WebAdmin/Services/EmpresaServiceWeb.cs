@@ -10,7 +10,7 @@ using System.Text;
 
 namespace JBD.MonitorCozinha.WebAdmin.Services
 {
-    public class EmpresaServiceWeb
+    public class EmpresaServiceWeb : ServiceBaseUrl
     {
         private readonly IMapper _mapper;
 
@@ -92,8 +92,8 @@ namespace JBD.MonitorCozinha.WebAdmin.Services
 
         public void ServiceBase(HttpClient client)
         {
-            client.BaseAddress = new Uri("http://localhost:52936/api/empresa/");
-            //client.BaseAddress = new Uri("http://www.apimymonitor.com.br/api/empresa/");
+            client.BaseAddress = new Uri(Url);
+
             MediaTypeWithQualityHeaderValue contentType = new MediaTypeWithQualityHeaderValue("application/json");
             client.DefaultRequestHeaders.Accept.Add(contentType);
         }
