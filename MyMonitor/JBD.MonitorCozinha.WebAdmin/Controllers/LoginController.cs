@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
-using JBD.MonitorCozinha.Application.Interfaces;
 using JBD.MonitorCozinha.CrossCutting;
 using JBD.MonitorCozinha.WebAdmin.Models;
 using JBD.MonitorCozinha.WebAdmin.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JBD.MonitorCozinha.WebAdmin.Controllers
@@ -18,11 +14,13 @@ namespace JBD.MonitorCozinha.WebAdmin.Controllers
         private readonly UsuarioServiceWeb _usuarioServiceWeb;
         private readonly LembreteSenhaServiceWeb _lembreteSenhaServiceWeb;
         private readonly EmailService _emailService;
+        private readonly EmpresaServiceWeb _empresaServiceWeb;
 
         public LoginController(IMapper mapper)
         {
             _mapper = mapper;
             _usuarioServiceWeb = new UsuarioServiceWeb(_mapper);
+            _empresaServiceWeb = new EmpresaServiceWeb(_mapper);
             _lembreteSenhaServiceWeb = new LembreteSenhaServiceWeb(_mapper);
             _emailService = new EmailService();
         }
@@ -38,13 +36,36 @@ namespace JBD.MonitorCozinha.WebAdmin.Controllers
         {
             string mansagem = "";
             bool logado = false;
+            bool autenticar = false;
             try
             {
                 var usuario = _usuarioServiceWeb.UsuarioLogar(userName, GeraradorDeHash.GerarHash256(senha));
                 if (usuario != null)
                 {
-                    Controle.AtualzarAcesso(usuario);
-                    logado = true;
+                    var empresa = _empresaServiceWeb.ObterEmpresa(usuario.IdEmpresa);
+                    if (empresa?.IdStatus != 1)
+                    {
+                        mansagem = "Esta unidade não está mais ativa!!!";
+                    }
+                    else
+                    {
+                        autenticar = true;
+                    }
+
+                    if (usuario.IdUnidade > 0 && autenticar)
+                    {
+                        if (empresa.Unidades.FirstOrDefault(u => u.IdUnidade == usuario.IdUnidade)?.IdStatus != 1)
+                        {
+                            mansagem = "Esta cozinha não está mais ativa!!!";
+                            autenticar = false;
+                        }
+                    }
+
+                    if (autenticar)
+                    {
+                        Controle.AtualzarAcesso(usuario);
+                        logado = true;
+                    }
                 }
                 else
                 {
@@ -56,6 +77,11 @@ namespace JBD.MonitorCozinha.WebAdmin.Controllers
                 mansagem = "Erro: Entre em contato com o Administrador!";
             }
             return Json(new { message = mansagem, logado = logado });
+        }
+
+        public ActionResult Home()
+        {
+            return View();
         }
 
         [HttpPost]
@@ -100,11 +126,6 @@ namespace JBD.MonitorCozinha.WebAdmin.Controllers
             }
 
             return Json(new { mensagem = mensagemRetorno, retorno = "200" });
-        }
-
-        public ActionResult Home()
-        {
-            return View();
         }
 
         // GET: Login/NovaSenha/5
