@@ -24,7 +24,7 @@ namespace JBD.MonitorCozinha.WebAdmin.Services
             {
                 ServiceBase(client);
                 string parametros = string.Format("/{0}/{1}", IdEmpresa, IdUnidade);
-                HttpResponseMessage response = client.GetAsync("ListarNumeroPedidos" + parametros).Result;
+                HttpResponseMessage response = client.GetAsync("Monitor/ListarNumeroPedidos" + parametros).Result;
                 string stringData = response.Content.ReadAsStringAsync().Result;
                 List<NumeroPedidoDTO> data = JsonConvert.DeserializeObject<List<NumeroPedidoDTO>>(stringData);
 

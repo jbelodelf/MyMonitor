@@ -27,7 +27,7 @@ namespace JBD.MonitorCozinha.WebAdmin.Services
                 ServiceBase(client);
                 string parametroJSON = JsonConvert.SerializeObject(lembreteSenhaDTO);
                 StringContent conteudo = new StringContent(parametroJSON, Encoding.UTF8, "application/json");
-                HttpResponseMessage response = client.PostAsync("InserirLembreteSenha", conteudo).Result;
+                HttpResponseMessage response = client.PostAsync("LembreteSenha/InserirLembreteSenha", conteudo).Result;
                 string stringData = response.Content.ReadAsStringAsync().Result;
                 LembreteSenhaDTO data = JsonConvert.DeserializeObject<LembreteSenhaDTO>(stringData);
                 lembreteSenhaView = _mapper.Map<LembreteSenhaViewModel>(data);
@@ -42,7 +42,7 @@ namespace JBD.MonitorCozinha.WebAdmin.Services
                 ServiceBase(client);
                 string parametroJSON = JsonConvert.SerializeObject(lembreteSenhaDTO);
                 StringContent conteudo = new StringContent(parametroJSON, Encoding.UTF8, "application/json");
-                HttpResponseMessage response = client.PutAsync("AlterarLembreteSenha", conteudo).Result;
+                HttpResponseMessage response = client.PutAsync("LembreteSenha/AlterarLembreteSenha", conteudo).Result;
                 string stringData = response.Content.ReadAsStringAsync().Result;
                 LembreteSenhaDTO data = JsonConvert.DeserializeObject<LembreteSenhaDTO>(stringData);
             }
@@ -53,7 +53,7 @@ namespace JBD.MonitorCozinha.WebAdmin.Services
             using (HttpClient client = new HttpClient())
             {
                 ServiceBase(client);
-                HttpResponseMessage response = client.GetAsync("ObterLembreteSenhaByChave/" + chave).Result;
+                HttpResponseMessage response = client.GetAsync("LembreteSenha/ObterLembreteSenhaByChave/" + chave).Result;
                 string stringData = response.Content.ReadAsStringAsync().Result;
                 LembreteSenhaDTO data = JsonConvert.DeserializeObject<LembreteSenhaDTO>(stringData);
 

@@ -25,7 +25,7 @@ namespace JBD.MonitorCozinha.WebAdmin.Services
             {
                 ServiceBase(client);
                 string paramentos = string.Format("{0}/{1}", IdEmpresa, IdUnidade);
-                HttpResponseMessage response = client.GetAsync("ListarNumeroPedidos/" + paramentos).Result;
+                HttpResponseMessage response = client.GetAsync("Monitor/ListarNumeroPedidos/" + paramentos).Result;
                 string stringData = response.Content.ReadAsStringAsync().Result;
                 List<NumeroPedidoDTO> data = JsonConvert.DeserializeObject<List<NumeroPedidoDTO>>(stringData);
 
@@ -39,7 +39,7 @@ namespace JBD.MonitorCozinha.WebAdmin.Services
             using (HttpClient client = new HttpClient())
             {
                 ServiceBase(client);
-                HttpResponseMessage response = client.GetAsync("ObterNumeroPedido/" + IdNumeroPedido).Result;
+                HttpResponseMessage response = client.GetAsync("Monitor/ObterNumeroPedido/" + IdNumeroPedido).Result;
                 string stringData = response.Content.ReadAsStringAsync().Result;
                 NumeroPedidoDTO data = JsonConvert.DeserializeObject<NumeroPedidoDTO>(stringData);
 
@@ -56,7 +56,7 @@ namespace JBD.MonitorCozinha.WebAdmin.Services
                 ServiceBase(client);
                 string parametroJSON = JsonConvert.SerializeObject(numeroPedidoDTO);
                 StringContent conteudo = new StringContent(parametroJSON, Encoding.UTF8, "application/json");
-                HttpResponseMessage response = client.PostAsync("InserirNumeroPedido", conteudo).Result;
+                HttpResponseMessage response = client.PostAsync("Monitor/InserirNumeroPedido", conteudo).Result;
                 string stringData = response.Content.ReadAsStringAsync().Result;
                 NumeroPedidoDTO data = JsonConvert.DeserializeObject<NumeroPedidoDTO>(stringData);
             }
@@ -70,7 +70,7 @@ namespace JBD.MonitorCozinha.WebAdmin.Services
                 ServiceBase(client);
                 string parametroJSON = JsonConvert.SerializeObject(numeroPedidoDTO);
                 StringContent conteudo = new StringContent(parametroJSON, Encoding.UTF8, "application/json");
-                HttpResponseMessage response = client.PutAsync("AtualizaNumeroPedido", conteudo).Result;
+                HttpResponseMessage response = client.PutAsync("Monitor/AtualizaNumeroPedido", conteudo).Result;
                 string stringData = response.Content.ReadAsStringAsync().Result;
                 NumeroPedidoDTO data = JsonConvert.DeserializeObject<NumeroPedidoDTO>(stringData);
             }
@@ -81,7 +81,7 @@ namespace JBD.MonitorCozinha.WebAdmin.Services
             using (HttpClient client = new HttpClient())
             {
                 ServiceBase(client);
-                HttpResponseMessage response = client.GetAsync("DeleteNumeroPedido/" + IdNumeroPedido).Result;
+                HttpResponseMessage response = client.GetAsync("Monitor/DeleteNumeroPedido/" + IdNumeroPedido).Result;
                 string stringData = response.Content.ReadAsStringAsync().Result;
                 bool data = JsonConvert.DeserializeObject<bool>(stringData);
 

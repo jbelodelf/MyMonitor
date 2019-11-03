@@ -24,7 +24,7 @@ namespace JBD.MonitorCozinha.WebAdmin.Services
             using (HttpClient client = new HttpClient())
             {
                 ServiceBase(client);
-                HttpResponseMessage response = client.GetAsync("listar").Result;
+                HttpResponseMessage response = client.GetAsync("empresa/listar").Result;
                 string stringData = response.Content.ReadAsStringAsync().Result;
                 List<EmpresaDTO> data = JsonConvert.DeserializeObject<List<EmpresaDTO>>(stringData);
 
@@ -38,7 +38,7 @@ namespace JBD.MonitorCozinha.WebAdmin.Services
             using (HttpClient client = new HttpClient())
             {
                 ServiceBase(client);
-                HttpResponseMessage response = client.GetAsync("ObterEmpresa/" + IdEmpresa).Result;
+                HttpResponseMessage response = client.GetAsync("empresa/ObterEmpresa/" + IdEmpresa).Result;
                 string stringData = response.Content.ReadAsStringAsync().Result;
                 EmpresaDTO data = JsonConvert.DeserializeObject<EmpresaDTO>(stringData);
 
@@ -52,7 +52,7 @@ namespace JBD.MonitorCozinha.WebAdmin.Services
             using (HttpClient client = new HttpClient())
             {
                 ServiceBase(client);
-                HttpResponseMessage response = client.GetAsync("GetVerificaDuplicidadeCPF/" + cnpjcpf).Result;
+                HttpResponseMessage response = client.GetAsync("empresa/GetVerificaDuplicidadeCPF/" + cnpjcpf).Result;
                 string stringData = response.Content.ReadAsStringAsync().Result;
                 var data = JsonConvert.DeserializeObject<bool>(stringData);
 
@@ -68,7 +68,7 @@ namespace JBD.MonitorCozinha.WebAdmin.Services
                 ServiceBase(client);
                 string parametroJSON = JsonConvert.SerializeObject(empresasDTO);
                 StringContent conteudo = new StringContent(parametroJSON, Encoding.UTF8, "application/json");
-                HttpResponseMessage response = client.PostAsync("InserirEmpresa", conteudo).Result;
+                HttpResponseMessage response = client.PostAsync("empresa/InserirEmpresa", conteudo).Result;
                 string stringData = response.Content.ReadAsStringAsync().Result;
                 EmpresaDTO data = JsonConvert.DeserializeObject<EmpresaDTO>(stringData);
                 empresa = _mapper.Map<EmpresaViewModel>(data);
@@ -84,7 +84,7 @@ namespace JBD.MonitorCozinha.WebAdmin.Services
                 ServiceBase(client);
                 string parametroJSON = JsonConvert.SerializeObject(empresasDTO);
                 StringContent conteudo = new StringContent(parametroJSON, Encoding.UTF8, "application/json");
-                HttpResponseMessage response = client.PutAsync("AlterarEmpresa", conteudo).Result;
+                HttpResponseMessage response = client.PutAsync("empresa/AlterarEmpresa", conteudo).Result;
                 string stringData = response.Content.ReadAsStringAsync().Result;
                 EmpresaDTO data = JsonConvert.DeserializeObject<EmpresaDTO>(stringData);
             }

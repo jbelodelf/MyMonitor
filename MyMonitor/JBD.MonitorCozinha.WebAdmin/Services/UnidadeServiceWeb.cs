@@ -26,7 +26,7 @@ namespace JBD.MonitorCozinha.WebAdmin.Services
             using (HttpClient client = new HttpClient())
             {
                 ServiceBase(client);
-                HttpResponseMessage response = client.GetAsync("ListarUnidades").Result;
+                HttpResponseMessage response = client.GetAsync("Unidade/ListarUnidades").Result;
                 string stringData = response.Content.ReadAsStringAsync().Result;
                 List<UnidadeDTO> data = JsonConvert.DeserializeObject<List<UnidadeDTO>>(stringData);
 
@@ -40,7 +40,7 @@ namespace JBD.MonitorCozinha.WebAdmin.Services
             using (HttpClient client = new HttpClient())
             {
                 ServiceBase(client);
-                HttpResponseMessage response = client.GetAsync("ListarUnidadeByIdEmpresa/" + Id).Result;
+                HttpResponseMessage response = client.GetAsync("Unidade/ListarUnidadeByIdEmpresa/" + Id).Result;
                 string stringData = response.Content.ReadAsStringAsync().Result;
                 List<UnidadeDTO> data = JsonConvert.DeserializeObject<List<UnidadeDTO>>(stringData);
 
@@ -55,7 +55,7 @@ namespace JBD.MonitorCozinha.WebAdmin.Services
             using (HttpClient client = new HttpClient())
             {
                 ServiceBase(client);
-                HttpResponseMessage response = client.GetAsync("ObterUnidade/" + Id).Result;
+                HttpResponseMessage response = client.GetAsync("Unidade/ObterUnidade/" + Id).Result;
                 string stringData = response.Content.ReadAsStringAsync().Result;
                 UnidadeDTO data = JsonConvert.DeserializeObject<UnidadeDTO>(stringData);
 
@@ -73,7 +73,7 @@ namespace JBD.MonitorCozinha.WebAdmin.Services
                 ServiceBase(client);
                 string parametroJSON = JsonConvert.SerializeObject(unidadeDTO);
                 StringContent conteudo = new StringContent(parametroJSON, Encoding.UTF8, "application/json");
-                HttpResponseMessage response = client.PostAsync("InserirUnidade", conteudo).Result;
+                HttpResponseMessage response = client.PostAsync("Unidade/InserirUnidade", conteudo).Result;
                 string stringData = response.Content.ReadAsStringAsync().Result;
                 UnidadeDTO data = JsonConvert.DeserializeObject<UnidadeDTO>(stringData);
                 unidade = _mapper.Map<UnidadeViewModel>(data);
@@ -89,7 +89,7 @@ namespace JBD.MonitorCozinha.WebAdmin.Services
                 ServiceBase(client);
                 string parametroJSON = JsonConvert.SerializeObject(unidadeDTO);
                 StringContent conteudo = new StringContent(parametroJSON, Encoding.UTF8, "application/json");
-                HttpResponseMessage response = client.PutAsync("AlterarUnidade", conteudo).Result;
+                HttpResponseMessage response = client.PutAsync("Unidade/AlterarUnidade", conteudo).Result;
                 string stringData = response.Content.ReadAsStringAsync().Result;
                 UnidadeDTO data = JsonConvert.DeserializeObject<UnidadeDTO>(stringData);
             }

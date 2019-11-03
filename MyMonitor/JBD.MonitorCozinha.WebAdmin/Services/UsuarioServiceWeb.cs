@@ -25,7 +25,7 @@ namespace JBD.MonitorCozinha.WebAdmin.Services
             using (HttpClient client = new HttpClient())
             {
                 ServiceBase(client);
-                HttpResponseMessage response = client.GetAsync("ListarUsuarios").Result;
+                HttpResponseMessage response = client.GetAsync("Usuario/ListarUsuarios").Result;
                 string stringData = response.Content.ReadAsStringAsync().Result;
                 List<UsuarioDTO> data = JsonConvert.DeserializeObject<List<UsuarioDTO>>(stringData);
 
@@ -39,7 +39,7 @@ namespace JBD.MonitorCozinha.WebAdmin.Services
             using (HttpClient client = new HttpClient())
             {
                 ServiceBase(client);
-                HttpResponseMessage response = client.GetAsync("ObterUsuario/" + IdUsuario).Result;
+                HttpResponseMessage response = client.GetAsync("Usuario/ObterUsuario/" + IdUsuario).Result;
                 string stringData = response.Content.ReadAsStringAsync().Result;
                 UsuarioDTO data = JsonConvert.DeserializeObject<UsuarioDTO>(stringData);
 
@@ -56,7 +56,7 @@ namespace JBD.MonitorCozinha.WebAdmin.Services
                 ServiceBase(client);
                 string parametroJSON = JsonConvert.SerializeObject(usuarioDTO);
                 StringContent conteudo = new StringContent(parametroJSON, Encoding.UTF8, "application/json");
-                HttpResponseMessage response = client.PostAsync("InserirUsuario", conteudo).Result;
+                HttpResponseMessage response = client.PostAsync("Usuario/InserirUsuario", conteudo).Result;
                 string stringData = response.Content.ReadAsStringAsync().Result;
                 UsuarioDTO data = JsonConvert.DeserializeObject<UsuarioDTO>(stringData);
                 usuario = _mapper.Map<UsuarioViewModel>(data);
@@ -72,7 +72,7 @@ namespace JBD.MonitorCozinha.WebAdmin.Services
                 ServiceBase(client);
                 string parametroJSON = JsonConvert.SerializeObject(usuarioDTO);
                 StringContent conteudo = new StringContent(parametroJSON, Encoding.UTF8, "application/json");
-                HttpResponseMessage response = client.PutAsync("AlterarUsuario", conteudo).Result;
+                HttpResponseMessage response = client.PutAsync("Usuario/AlterarUsuario", conteudo).Result;
                 string stringData = response.Content.ReadAsStringAsync().Result;
                 UsuarioDTO data = JsonConvert.DeserializeObject<UsuarioDTO>(stringData);
             }
@@ -82,9 +82,8 @@ namespace JBD.MonitorCozinha.WebAdmin.Services
         {
             using (HttpClient client = new HttpClient())
             {
-                ///api/Usuario/UsuarioLogar/{userName}/{senha}
                 ServiceBase(client);
-                HttpResponseMessage response = client.GetAsync("UsuarioLogar/" + userName + "/" + senha).Result;
+                HttpResponseMessage response = client.GetAsync("Usuario/UsuarioLogar/" + userName + "/" + senha).Result;
                 string stringData = response.Content.ReadAsStringAsync().Result;
                 UsuarioDTO data = JsonConvert.DeserializeObject<UsuarioDTO>(stringData);
 
@@ -97,9 +96,8 @@ namespace JBD.MonitorCozinha.WebAdmin.Services
         {
             using (HttpClient client = new HttpClient())
             {
-                ///api/Usuario/UsuarioByUsuerName/{userName}/{senha}
                 ServiceBase(client);
-                HttpResponseMessage response = client.GetAsync("UsuarioByUsuerName/" + userName ).Result;
+                HttpResponseMessage response = client.GetAsync("Usuario/UsuarioByUsuerName/" + userName ).Result;
                 string stringData = response.Content.ReadAsStringAsync().Result;
                 UsuarioDTO data = JsonConvert.DeserializeObject<UsuarioDTO>(stringData);
 
