@@ -15,12 +15,14 @@ namespace JBD.MonitorCozinha.WebAdmin.Controllers
         private readonly LembreteSenhaServiceWeb _lembreteSenhaServiceWeb;
         private readonly EmailService _emailService;
         private readonly EmpresaServiceWeb _empresaServiceWeb;
+        private readonly UnidadeServiceWeb _unidadeServiceWeb;
 
         public LoginController(IMapper mapper)
         {
             _mapper = mapper;
             _usuarioServiceWeb = new UsuarioServiceWeb(_mapper);
             _empresaServiceWeb = new EmpresaServiceWeb(_mapper);
+            _unidadeServiceWeb = new UnidadeServiceWeb(_mapper);
             _lembreteSenhaServiceWeb = new LembreteSenhaServiceWeb(_mapper);
             _emailService = new EmailService();
         }
@@ -89,9 +91,19 @@ namespace JBD.MonitorCozinha.WebAdmin.Controllers
         {
             var mensagemRetorno = "Email enviado com sucesso";
             var usuario = _usuarioServiceWeb.UsuarioByUsuerName(UserName);
+            var emailValidar = "";
             if (usuario != null)
             {
-                if ((usuario.Pessoa.EmailPF.Trim() == Email.Trim() || usuario.Pessoa.EmailPJ.Trim() == Email.Trim()))
+                if (usuario.IdTipo == Domain.Enuns.TipoUsuarioEnum.Operacional)
+                {
+                    emailValidar = _empresaServiceWeb.ObterEmpresa(usuario.IdEmpresa)?.Email ?? "";
+                }
+                else if (usuario.IdTipo == Domain.Enuns.TipoUsuarioEnum.Cozinha)
+                {
+                    emailValidar = _unidadeServiceWeb.ObterUnidade(usuario.IdUnidade)?.Email ?? "";
+                }
+
+                if (emailValidar.Trim() == Email.Trim())
                 {
                     var NovaChave = Guid.NewGuid();
                     LembreteSenhaViewModel lembreteSenhaViewModel = new LembreteSenhaViewModel()

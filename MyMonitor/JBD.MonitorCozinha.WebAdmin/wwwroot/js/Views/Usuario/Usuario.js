@@ -254,7 +254,7 @@
         $("#ModalLembreteSenha").modal('show');
     },
 
-    ValidaSenhaDigitada() {
+    ValidaSenhaDigitada: function () {
         password1 = $("#Password").val();
         password2 = $("#Password2").val();
 
