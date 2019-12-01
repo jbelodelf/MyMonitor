@@ -47,10 +47,21 @@ namespace JBD.MonitorCozinha.WebAdmin.Models
         // Cozinha
     }
 
+    public class MonitorCozinhaViewModel
+    {
+        public int IdUnidade { get; set; }
+        public int QuantidePedidosFazendo { get; set; }
+        public int QuantidePedidosPronto { get; set; }
+        public bool Carregado { get; set; }
+        public bool beep { get; set; }
+        public List<NumeroPedidoViewModel> numerosPedidoCache = new List<NumeroPedidoViewModel>();
+    }
+
     public static class Controle
     {
         public static ControleAcessoViewModel ControleAcesso { get; set; } = new ControleAcessoViewModel();
         public static PerfilPFuncionalidadeViewModel PerfilPFuncionalidade { get; set; } = new PerfilPFuncionalidadeViewModel();
+        public static MonitorCozinhaViewModel monitorCozinhaViewModel { get; set; } = new MonitorCozinhaViewModel();
 
         public static void AtualzarAcesso(UsuarioViewModel usuario)
         {
@@ -75,8 +86,6 @@ namespace JBD.MonitorCozinha.WebAdmin.Models
             }
             return valido;
         }
-
-
 
     }
 }

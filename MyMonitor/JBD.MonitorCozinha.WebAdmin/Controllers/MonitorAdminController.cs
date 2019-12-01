@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using AutoMapper;
 using JBD.MonitorCozinha.Domain.Enuns;
 using JBD.MonitorCozinha.WebAdmin.Models;
@@ -34,12 +35,40 @@ namespace JBD.MonitorCozinha.WebAdmin.Controllers
         public ActionResult Listar(int IdEmpresa, int IdUnidade)
         {
             if (!Controle.ValidarUsuarioLogado()) { return RedirectToAction("Index", "Login"); }
-
+            Controle.monitorCozinhaViewModel.beep = false;
             List<NumeroPedidoViewModel> numeroPedidoViewModel = new List<NumeroPedidoViewModel>();
-            NumeroPedidoViewModel numeroPedidoVM = new NumeroPedidoViewModel();
-            var numeroPedidoDTO = _monitorAdminServiceWeb.ListarNumeroPedidos(IdEmpresa, IdUnidade);
 
-            numeroPedidoViewModel = _mapper.Map<List<NumeroPedidoViewModel>>(numeroPedidoDTO);
+            numeroPedidoViewModel = _monitorAdminServiceWeb.ListarNumeroPedidos(IdEmpresa, IdUnidade);
+
+            //-------------------------------------------------------------------------------------------------------------------------------------------------
+            if (numeroPedidoViewModel.Where(p => p.IdStatusPedido == StatusPedidoEnum.Fazendo).Any())
+            {
+                if (!Controle.monitorCozinhaViewModel.Carregado)
+                {
+                    Controle.monitorCozinhaViewModel.numerosPedidoCache.AddRange(numeroPedidoViewModel.Where(p => p.IdStatusPedido == StatusPedidoEnum.Fazendo).ToList());
+                    Controle.monitorCozinhaViewModel.Carregado = true;
+                }
+                else
+                {
+                    foreach (var numeroPedido in numeroPedidoViewModel.Where(p => p.IdStatusPedido == StatusPedidoEnum.Fazendo).ToList())
+                    {
+                        if (!Controle.monitorCozinhaViewModel.numerosPedidoCache.Where(n => n.IdNumeroPedido == numeroPedido.IdNumeroPedido).Any())
+                        {
+                            Controle.monitorCozinhaViewModel.beep = true;
+                            numeroPedido.NovoNumero = true;
+                        }
+                    }
+
+                    Controle.monitorCozinhaViewModel.numerosPedidoCache = new List<NumeroPedidoViewModel>();
+                    Controle.monitorCozinhaViewModel.numerosPedidoCache.AddRange(numeroPedidoViewModel.Where(p => p.IdStatusPedido == StatusPedidoEnum.Fazendo).ToList());
+                }
+            }
+            else
+            {
+                Controle.monitorCozinhaViewModel.numerosPedidoCache = new List<NumeroPedidoViewModel>();
+                Controle.monitorCozinhaViewModel.Carregado = true;
+            }
+            //-------------------------------------------------------------------------------------------------------------------------------------------------
 
             return PartialView("~/Views/MonitorAdmin/MainMonitor.cshtml", numeroPedidoViewModel.OrderBy(n => n.IdNumeroPedido));
         }
@@ -52,9 +81,8 @@ namespace JBD.MonitorCozinha.WebAdmin.Controllers
             NumeroPedidoViewModel numeroPedidoVM = _monitorAdminServiceWeb.ObterNumeroPedido(IdNumeroPedido);
             numeroPedidoVM.IdStatusPedido = Idstatus;
             _monitorAdminServiceWeb.AlterarNumeroPedido(numeroPedidoVM);
-            bool retorno = true;
 
-            return Json(new { resultado = retorno });
+            return Json(new { resultado = true });
         }
 
         // POST: MonitorAdmin/InserirNumeroPedido/

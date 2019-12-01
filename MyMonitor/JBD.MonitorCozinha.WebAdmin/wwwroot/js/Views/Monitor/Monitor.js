@@ -17,7 +17,7 @@
             $("html, body").animate({ scrollTop: $(document).height() - $(window).height() }, 5000);
             window.setTimeout(function () {
                 RecarregarMonitor();
-            }, 15000);
+            }, 10000);
             $("html, body").animate({ scrollTop: $("#divTop").scrollTop() }, 5000);
 
         }).fail(function (jqXHR, exception) {

@@ -14,7 +14,7 @@
             $("#divMonitorBody").html(data);
             window.setTimeout(function () {
                 RecarregarMonitor();
-            }, 15000);
+            }, 20000); //15000
        }).fail(function (jqXHR, exception) {
             TratamentoDeErro(jqXHR, exception);
         });

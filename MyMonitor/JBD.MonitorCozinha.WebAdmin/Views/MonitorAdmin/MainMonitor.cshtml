@@ -1,11 +1,17 @@
 ﻿@model IEnumerable<JBD.MonitorCozinha.WebAdmin.Models.NumeroPedidoViewModel>
 
 <table class="table table-bordered" style="border: 5px solid #dee2e6 !important;" id="divTop">
+    @if (Controle.monitorCozinhaViewModel.beep)
+    {
+        <audio controls="controls" autoplay style="display:none;">
+            <source src="~/sounds/iPhone%20suoneria%20notifica.mp3" type="audio/mpeg" />
+        </audio>
+    }
     <tbody>
         <tr id="divFazer" style="height: 550px;">
             @*<td id="tdAfazer" style="width:33%;border: 5px solid #dee2e6 !important;">
-                @Html.Partial("_MonitoAFazer", Model)
-            </td>*@
+                    @Html.Partial("_MonitoAFazer", Model)
+                </td>*@
             <td id="tdFazendo" style="width:33%;border: 5px solid #dee2e6 !important;">
                 @Html.Partial("_MonitorFazendo", Model)
             </td>
