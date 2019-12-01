@@ -14,6 +14,9 @@
         }).done(function (data) {
             $("#divMonitorTvBody").html(data);
 
+            var largura = window.screen.availWidth;
+            $("#divTop").css('width', (largura - 48));
+
             $("html, body").animate({ scrollTop: $(document).height() - $(window).height() }, 5000);
             window.setTimeout(function () {
                 RecarregarMonitor();

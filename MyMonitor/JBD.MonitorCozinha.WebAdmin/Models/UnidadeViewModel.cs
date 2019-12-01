@@ -36,8 +36,9 @@ namespace JBD.MonitorCozinha.WebAdmin.Models
         public DateTime DataCadastro { get; set; }
         [DisplayName("Logomarca")]
         public string ImageLogomarca { get; set; }
-
         public string NomeEmpresa { get; set; }
+        [DisplayName("Cor da unidade")]
+        public string UnidadeCor { get; set; }
 
         // Para List Index
         public List<PessoaViewModel> Pessoas { get; set; }

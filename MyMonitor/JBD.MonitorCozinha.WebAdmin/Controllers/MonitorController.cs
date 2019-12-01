@@ -12,11 +12,13 @@ namespace JBD.MonitorCozinha.WebAdmin.Controllers
     {
         private readonly IMapper _mapper;
         private readonly MonitorServiceWeb _monitorServiceWeb;
+        private readonly UnidadeServiceWeb _unidadeServiceWeb;
 
         public MonitorController(IMapper mapper)
         {
             _mapper = mapper;
             _monitorServiceWeb = new MonitorServiceWeb(_mapper);
+            _unidadeServiceWeb = new UnidadeServiceWeb(_mapper);
         }
 
         // GET: Monitor
@@ -25,6 +27,7 @@ namespace JBD.MonitorCozinha.WebAdmin.Controllers
             if (!Controle.ValidarUsuarioLogado()) { return RedirectToAction("Index", "Login"); }
             Controle.ControleAcesso.IdUnidade = idUnidade;
             Controle.ControleAcesso.Unidade = NomeUnidade;
+            Controle.ControleAcesso.UnidadeCor = _unidadeServiceWeb.ObterUnidade(idUnidade)?.UnidadeCor;
 
             return View();
         }

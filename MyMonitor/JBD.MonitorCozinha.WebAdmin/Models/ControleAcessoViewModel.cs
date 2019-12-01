@@ -1,8 +1,6 @@
 ﻿using JBD.MonitorCozinha.Domain.Enuns;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace JBD.MonitorCozinha.WebAdmin.Models
 {
@@ -11,10 +9,10 @@ namespace JBD.MonitorCozinha.WebAdmin.Models
         public int IdControleAcesso { get; set; }
         public int IdUsuario { get; set; }
         public TipoUsuarioEnum IdTipo { get; set; }
-
         public int IdUnidade { get; set; }
         public int IdEmpresa { get; set; }
         public string Unidade { get; set; }
+        public string UnidadeCor { get; set; }
         public string IP { get; set; }
         public DateTime DataLogin { get; set; }
         public DateTime DataLogoff { get; set; }
@@ -50,8 +48,6 @@ namespace JBD.MonitorCozinha.WebAdmin.Models
     public class MonitorCozinhaViewModel
     {
         public int IdUnidade { get; set; }
-        public int QuantidePedidosFazendo { get; set; }
-        public int QuantidePedidosPronto { get; set; }
         public bool Carregado { get; set; }
         public bool beep { get; set; }
         public List<NumeroPedidoViewModel> numerosPedidoCache = new List<NumeroPedidoViewModel>();
@@ -72,6 +68,7 @@ namespace JBD.MonitorCozinha.WebAdmin.Models
             if (usuario.Unidade != null)
             {
                 ControleAcesso.Unidade = usuario.Unidade.Nome;
+                ControleAcesso.UnidadeCor = usuario.Unidade.UnidadeCor;
             }
             ControleAcesso.ConexaoAtiva = true;
             ControleAcesso.DataLogin = DateTime.Now;
