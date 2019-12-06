@@ -11,6 +11,7 @@ namespace JBD.MonitorCozinha.WebAdmin.Models
         public string NumeroPedido { get; set; }
         public StatusPedidoEnum IdStatusPedido { get; set; }
         public DateTime DataCadastro { get; set; }
+        public DateTime? DataPronto { get; set; }
         public DateTime? DataFinalizacao { get; set; }
         public bool NovoNumero { get; set; }
     }

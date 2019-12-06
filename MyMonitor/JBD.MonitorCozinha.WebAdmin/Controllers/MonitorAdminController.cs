@@ -80,6 +80,14 @@ namespace JBD.MonitorCozinha.WebAdmin.Controllers
 
             NumeroPedidoViewModel numeroPedidoVM = _monitorAdminServiceWeb.ObterNumeroPedido(IdNumeroPedido);
             numeroPedidoVM.IdStatusPedido = Idstatus;
+            if (Idstatus == StatusPedidoEnum.Pronto)
+            {
+                numeroPedidoVM.DataPronto = DateTime.Now;
+            }
+            else if (Idstatus == StatusPedidoEnum.Fazendo)
+            {
+                numeroPedidoVM.DataFinalizacao = DateTime.Now;
+            }
             _monitorAdminServiceWeb.AlterarNumeroPedido(numeroPedidoVM);
 
             return Json(new { resultado = true });

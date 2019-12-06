@@ -12,6 +12,7 @@ namespace JBD.MonitorCozinha.Domain.DTOS
         public string NumeroPedido { get; set; }
         public int IdStatusPedido { get; set; }
         public DateTime DataCadastro { get; set; }
+        public DateTime? DataPronto { get; set; }
         public DateTime? DataFinalizacao { get; set; }
     }
 }
