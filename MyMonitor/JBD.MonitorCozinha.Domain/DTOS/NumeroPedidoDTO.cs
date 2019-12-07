@@ -6,7 +6,7 @@ namespace JBD.MonitorCozinha.Domain.DTOS
 {
     public class NumeroPedidoDTO
     {
-        public int IdNumeroPedido { get; set; }
+        public Int64 IdNumeroPedido { get; set; }
         public int IdUnidade { get; set; }
         public int IdEmpresa { get; set; }
         public string NumeroPedido { get; set; }

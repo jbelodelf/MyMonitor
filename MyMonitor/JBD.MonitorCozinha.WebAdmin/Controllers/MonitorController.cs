@@ -47,27 +47,27 @@ namespace JBD.MonitorCozinha.WebAdmin.Controllers
             {
                 if (!Controle.monitorCozinhaViewModel.Carregado)
                 {
-                    Controle.numerosPedidoCache.AddRange(numeroPedidoViewModel.Where(p => p.IdStatusPedido == StatusPedidoEnum.Pronto).ToList());
+                    Controle.numerosPedidoCacheTV.AddRange(numeroPedidoViewModel.Where(p => p.IdStatusPedido == StatusPedidoEnum.Pronto).ToList());
                     Controle.monitorCozinhaViewModel.Carregado = true;
                 }
                 else
                 {
                     foreach (var numeroPedido in numeroPedidoViewModel.Where(p => p.IdStatusPedido == StatusPedidoEnum.Pronto).ToList())
                     {
-                        if (!Controle.numerosPedidoCache.Where(n => n.IdNumeroPedido == numeroPedido.IdNumeroPedido).Any())
+                        if (!Controle.numerosPedidoCacheTV.Where(n => n.IdNumeroPedido == numeroPedido.IdNumeroPedido).Any())
                         {
                             Controle.monitorCozinhaViewModel.beep = true;
                             numeroPedido.NovoNumero = true;
                         }
                     }
 
-                    Controle.numerosPedidoCache = new List<NumeroPedidoViewModel>();
-                    Controle.numerosPedidoCache.AddRange(numeroPedidoViewModel.Where(p => p.IdStatusPedido == StatusPedidoEnum.Pronto).ToList());
+                    Controle.numerosPedidoCacheTV = new List<NumeroPedidoViewModel>();
+                    Controle.numerosPedidoCacheTV.AddRange(numeroPedidoViewModel.Where(p => p.IdStatusPedido == StatusPedidoEnum.Pronto).ToList());
                 }
             }
             else
             {
-                Controle.numerosPedidoCache = new List<NumeroPedidoViewModel>();
+                Controle.numerosPedidoCacheTV = new List<NumeroPedidoViewModel>();
                 Controle.monitorCozinhaViewModel.Carregado = true;
             }
             //-------------------------------------------------------------------------------------------------------------------------------------------------

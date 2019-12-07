@@ -45,27 +45,27 @@ namespace JBD.MonitorCozinha.WebAdmin.Controllers
             {
                 if (!Controle.monitorCozinhaViewModel.Carregado)
                 {
-                    Controle.numerosPedidoCache.AddRange(numeroPedidoViewModel.Where(p => p.IdStatusPedido == StatusPedidoEnum.Fazendo).ToList());
+                    Controle.numerosPedidoCacheCozinha.AddRange(numeroPedidoViewModel.Where(p => p.IdStatusPedido == StatusPedidoEnum.Fazendo).ToList());
                     Controle.monitorCozinhaViewModel.Carregado = true;
                 }
                 else
                 {
                     foreach (var numeroPedido in numeroPedidoViewModel.Where(p => p.IdStatusPedido == StatusPedidoEnum.Fazendo).ToList())
                     {
-                        if (!Controle.numerosPedidoCache.Where(n => n.IdNumeroPedido == numeroPedido.IdNumeroPedido).Any())
+                        if (!Controle.numerosPedidoCacheCozinha.Where(n => n.IdNumeroPedido == numeroPedido.IdNumeroPedido).Any())
                         {
                             Controle.monitorCozinhaViewModel.beep = true;
                             numeroPedido.NovoNumero = true;
                         }
                     }
 
-                    Controle.numerosPedidoCache = new List<NumeroPedidoViewModel>();
-                    Controle.numerosPedidoCache.AddRange(numeroPedidoViewModel.Where(p => p.IdStatusPedido == StatusPedidoEnum.Fazendo).ToList());
+                    Controle.numerosPedidoCacheCozinha = new List<NumeroPedidoViewModel>();
+                    Controle.numerosPedidoCacheCozinha.AddRange(numeroPedidoViewModel.Where(p => p.IdStatusPedido == StatusPedidoEnum.Fazendo).ToList());
                 }
             }
             else
             {
-                Controle.numerosPedidoCache = new List<NumeroPedidoViewModel>();
+                Controle.numerosPedidoCacheCozinha = new List<NumeroPedidoViewModel>();
                 Controle.monitorCozinhaViewModel.Carregado = true;
             }
             //-------------------------------------------------------------------------------------------------------------------------------------------------

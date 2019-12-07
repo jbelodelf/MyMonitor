@@ -8,7 +8,7 @@ namespace JBD.MonitorCozinha.Domain.Entitys
     public class NumeroPedidoEntity
     {
         [Key]
-        public int IdNumeroPedido { get; set; }
+        public Int64 IdNumeroPedido { get; set; }
         public int IdUnidade { get; set; }
         public int IdEmpresa { get; set; }
         public string NumeroPedido { get; set; }

@@ -57,7 +57,8 @@ namespace JBD.MonitorCozinha.WebAdmin.Models
         public static ControleAcessoViewModel ControleAcesso { get; set; } = new ControleAcessoViewModel();
         public static PerfilPFuncionalidadeViewModel PerfilPFuncionalidade { get; set; } = new PerfilPFuncionalidadeViewModel();
         public static MonitorCozinhaViewModel monitorCozinhaViewModel { get; set; } = new MonitorCozinhaViewModel();
-        public static List<NumeroPedidoViewModel> numerosPedidoCache = new List<NumeroPedidoViewModel>();
+        public static List<NumeroPedidoViewModel> numerosPedidoCacheCozinha { get; set; } = new List<NumeroPedidoViewModel>();
+        public static List<NumeroPedidoViewModel> numerosPedidoCacheTV { get; set; } = new List<NumeroPedidoViewModel>();
 
         public static void AtualzarAcesso(UsuarioViewModel usuario)
         {
