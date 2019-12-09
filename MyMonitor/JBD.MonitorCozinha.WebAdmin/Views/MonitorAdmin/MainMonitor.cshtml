@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<JBD.MonitorCozinha.WebAdmin.Models.NumeroPedidoViewModel>
 
 <table class="table table-bordered" style="border: 5px solid #dee2e6 !important;" id="divTop">
-    @if (Controle.monitorCozinhaViewModel.beep)
+    @if (ViewBag.Beep)
     {
         <audio controls="controls" autoplay style="display:none;">
             <source src="~/sounds/iPhone%20suoneria%20notifica.mp3" type="audio/mpeg" />

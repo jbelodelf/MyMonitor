@@ -6,7 +6,7 @@
     {
         if (item.IdStatusPedido == StatusPedidoEnum.Pronto)
         {
-            if (item.NovoNumero)
+            if (item.Controle == 1)
             {
                 <div class="float-left p-2"><span id="b"><button class="btn btn-outline-success form-control" value="@item.IdStatusPedido" style="font-size:70px; color:brown;"><b>@item.NumeroPedido</b></button></span></div>
             }

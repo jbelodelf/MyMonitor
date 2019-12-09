@@ -16,5 +16,6 @@ namespace JBD.MonitorCozinha.Domain.Entitys
         public DateTime DataCadastro { get; set; }
         public DateTime? DataPronto { get; set; }
         public DateTime? DataFinalizacao { get; set; }
+        public int Controle { get; set; }
     }
 }
