@@ -14,6 +14,18 @@
         }).done(function (data) {
             if (data.logado) {
 
+                localStorage.setItem('IdEmpresa', data.usuario.idEmpresa);
+                localStorage.setItem('IdUnidade', data.usuario.idUnidade);
+                localStorage.setItem('IdUsuario', data.usuario.idUsuario);
+                localStorage.setItem('IdTipo', data.usuario.idTipo);
+                localStorage.setItem('Unidade', '');
+                localStorage.setItem('UnidadeCor', '');
+
+                if (data.usuario.unidade != null) {
+                    localStorage.setItem('Unidade', data.usuario.unidade.nome);
+                    localStorage.setItem('UnidadeCor', data.usuario.unidade.unidadeCor);
+                }
+
                 window.location.href = "Login/Home";
             }
             else {
@@ -238,7 +250,7 @@
     },
 
     UnidadeAdmin: function (funcionalidade) {
-        window.location.href = "/Home/Index?funcionalidade=" + funcionalidade;
+        window.location.href = "/Home/Index?funcionalidade=" + funcionalidade + "&IdEmpresa=" + localStorage.getItem('IdEmpresa');
     },
 
     MonitorTV: function (idUnidade, nomeUnidade) {
@@ -246,6 +258,8 @@
     },
 
     MonitorAdmin: function (idUnidade, nomeUnidade) {
+        var idUnidade = localStorage.getItem('IdUnidade');
+        var nomeUnidade = localStorage.getItem('Unidade');
         $("#IdUnidade").val(idUnidade);
         window.location.href = "/MonitorAdmin/Index?IdUnidade=" + idUnidade + "&NomeUnidade=" + nomeUnidade;
     },

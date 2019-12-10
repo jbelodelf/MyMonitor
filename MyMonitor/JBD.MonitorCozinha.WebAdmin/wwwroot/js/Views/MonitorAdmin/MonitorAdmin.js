@@ -1,7 +1,9 @@
 ﻿MonitorAdmin = {
     Listar: function () {
-        var idEmpresa = $("#IdEmpresa").val();
-        var idUnidade = $("#IdUnidade").val();
+        //var idEmpresa = $("#IdEmpresa").val();
+        //var idUnidade = $("#IdUnidade").val();
+        var idEmpresa = localStorage.getItem('IdEmpresa');
+        var idUnidade = localStorage.getItem('IdUnidade');
         var url = "/MonitorAdmin/Listar";
         $.ajax({
             url: url
@@ -14,7 +16,7 @@
             $("#divMonitorBody").html(data);
             window.setTimeout(function () {
                 RecarregarMonitor();
-            }, 20000); //15000
+            }, 20000);
        }).fail(function (jqXHR, exception) {
             TratamentoDeErro(jqXHR, exception);
         });
@@ -41,8 +43,10 @@
     },
 
     InserirNumero: function () {
-        var IdEmpresa = $("#IdEmpresa").val();
-        var IdUnidade = $("#IdUnidade").val();
+        //var idEmpresa = $("#IdEmpresa").val();
+        //var idUnidade = $("#IdUnidade").val();
+        var idEmpresa = localStorage.getItem('IdEmpresa');
+        var idUnidade = localStorage.getItem('IdUnidade');
         var NumeroPedido = $("#NumeroPedido").val();
 
         var url = "/MonitorAdmin/InserirNumeroPedido";
@@ -51,7 +55,7 @@
             , datatype: "json"
             , type: "POST"
             , async: false
-            , data: { IdEmpresa: IdEmpresa, IdUnidade: IdUnidade, NumeroPedido: NumeroPedido }
+            , data: { IdEmpresa: idEmpresa, IdUnidade: idUnidade, NumeroPedido: NumeroPedido }
             , cache: false
         }).done(function (data) {
             if (data.resultado == true) {

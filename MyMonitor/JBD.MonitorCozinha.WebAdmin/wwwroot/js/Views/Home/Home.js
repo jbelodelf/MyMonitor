@@ -1,7 +1,9 @@
 ﻿Home = {
     InserirNumero: function (origem) {
-        var IdEmpresa = $("#IdEmpresa").val();
-        var IdUnidade = $("#IdUnidade").val();
+        //var IdEmpresa = $("#IdEmpresa").val();
+        //var IdUnidade = $("#IdUnidade").val();
+        var IdEmpresa = localStorage.getItem('IdEmpresa');
+        var IdUnidade = localStorage.getItem('IdUnidade');
         var NumeroPedido = $("#NumeroPedido").val();
 
         var url = "/MonitorAdmin/InserirNumeroPedido";
@@ -73,10 +75,8 @@
         var logo = '<img src="' + logomarca + '"' + ' class="img-fluid rounded img-thumbnail btn-outline-danger">';
         $("#dvNumeroPedido").html(num);
         $("#dvLogomarca").html(logo);
-
         $("#dvFinalizar").hide();
         $("#dvCozinhas").hide();
-
         $("#dvConfirmar").show();
 
         var btVoltar = '<button class="btn btn-outline-danger btn-custom" style="font-size:20px;" onclick="Home.SelecionarUnidade()"><i class="fas fa-arrow-alt-circle-left"></i> <b>VOLTAR</b></button>';
@@ -86,7 +86,6 @@
     Finalizar: function () {
         var nomeCozinha = '<button class="btn btn-lg-hover btn-block btn-custom" id="btFinalizar" style="font-size:40px;">&nbsp;&nbsp' + $("#CozinhaNome").val() + '&nbsp;&nbsp;</button>';
         $("#dvBtNomeCozinha").html(nomeCozinha);
-
         $("#dvConfirmar").hide();
         $("#dvFinalizar").show();
         $('#dvBtVoltar')[0].style.display = "none";
@@ -94,14 +93,12 @@
         window.setTimeout(function () {
             Home.Iniciar();
         }, 2000);
-
     },
 
     Iniciar: function () {
         $("#Logomarca").val("");
         $("#CozinhaNome").val("");
         $("#NumeroPedido").val("");
-
         $("#dvDigitarNumero").hide();
         $("#dvFinalizar").hide();
         $("#dvIniciar").show();

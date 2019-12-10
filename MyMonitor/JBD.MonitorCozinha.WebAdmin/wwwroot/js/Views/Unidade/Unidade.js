@@ -5,6 +5,7 @@
         $("#TopoPesquisa").css("margin-right", "5px");
         $("#TopoPesquisa").css("padding-top", "20px");
         $("#TopoPesquisa").css("padding-bottom", "15px");
+
         var unidade = $("#UnidadePesquisar").val();
         //Recupera o Id Empresa
         var idEmpresa = $("#IdEmpresa").val();

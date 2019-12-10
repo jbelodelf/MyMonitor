@@ -1,7 +1,9 @@
 ﻿Monitor = {
     Listar: function () {
-        var idEmpresa = $("#IdEmpresa").val();
-        var idUnidade = $("#IdUnidade").val();
+        //var idEmpresa = $("#IdEmpresa").val();
+        //var idUnidade = $("#IdUnidade").val();
+        var idEmpresa = localStorage.getItem('IdEmpresa');
+        var idUnidade = localStorage.getItem('IdUnidade');
 
         var url = "/Monitor/Listar";
         $.ajax({
