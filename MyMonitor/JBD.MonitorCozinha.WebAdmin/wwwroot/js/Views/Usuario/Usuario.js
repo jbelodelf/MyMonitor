@@ -300,6 +300,8 @@ $(document).ready(function () {
     var altura = window.screen.availHeight;
     var largura = window.screen.availWidth;
     $("#CadastroSenhaMotoboy").css('height', (altura - 230));
+
+    $("#versaoApp").html("Versão: 1.1.0.0");
 })
 
 function myFunction() {

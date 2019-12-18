@@ -112,6 +112,8 @@ $(document).ready(function () {
     if ((url == "/") || (url == "/MonitorAdmin") || (url == "/MonitorAdmin/Index") || (url == "/MonitorAdmin/")) {
         RecarregarMonitor();
     };
+
+    $("#versaoAppMonitorAdm").html("Versão: 1.1.0.0");
 })
 
 function RecarregarMonitor() {

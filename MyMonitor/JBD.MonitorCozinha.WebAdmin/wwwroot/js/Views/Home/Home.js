@@ -114,6 +114,8 @@ $(document).ready(function () {
     $("#btnSalvarNumeroPedido").click(function () {
         Home.InserirNumero("OPERADOR");
     })
+
+    $("#versaoAppMonitor").html("Versão: 1.1.0.0");
 })
 
 function isNumeric(str) {

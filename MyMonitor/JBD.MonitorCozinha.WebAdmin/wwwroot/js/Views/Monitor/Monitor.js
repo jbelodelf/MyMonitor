@@ -36,6 +36,8 @@ $(document).ready(function () {
     var largura = window.screen.availWidth;
     $("#divFazer").css('height', (altura - 230));
     $("#divTopHeader").css('width', (largura - 17));
+
+    $("#versaoAppMonitor").html("Versão: 1.1.0.0");
     RecarregarMonitor();
 })
 
