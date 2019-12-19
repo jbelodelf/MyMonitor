@@ -254,6 +254,7 @@
     },
 
     MonitorTV: function (idUnidade, nomeUnidade) {
+        localStorage.setItem('IdUnidade', idUnidade);
         window.location.href = "/Monitor/Index?idUnidade=" + idUnidade + "&NomeUnidade=" + nomeUnidade;
     },
 
