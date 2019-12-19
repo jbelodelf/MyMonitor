@@ -93,6 +93,7 @@
 $(document).ready(function () {
     var altura = window.screen.availHeight;
     var largura = window.screen.availWidth;
+    var corFundo = localStorage.getItem("UnidadeCor");
     $("#divFazer").css('height', (altura - 230));
     $("#divTopHeader").css('width', (largura - 17));
 
@@ -114,6 +115,7 @@ $(document).ready(function () {
     };
 
     $("#versaoAppMonitorAdm").html("Versão: 1.1.0.0");
+    $("CorresFundoA").css("background-color", corFundo);
 })
 
 function RecarregarMonitor() {
