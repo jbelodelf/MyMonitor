@@ -68,6 +68,8 @@
     
     Confirmar: function (idUnidade, logomarca, nomeCozinha) {
         $("#IdUnidade").val(idUnidade);
+        localStorage.setItem('IdUnidade', idUnidade);
+
         $("#Logomarca").val(logomarca);
         $("#CozinhaNome").val(nomeCozinha);
 
@@ -107,6 +109,9 @@
 }
 
 $(document).ready(function () {
+    $("#IdEmpresa").val(localStorage.getItem('IdEmpresa'));
+    $("#IdUnidade").val(localStorage.getItem('IdUnidade'));
+
     $("#btnFecharNumeroPedido").click(function () {
         $("#ModalCadastrarNumero").modal('hide');
     })

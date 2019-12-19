@@ -97,6 +97,9 @@ $(document).ready(function () {
     $("#divFazer").css('height', (altura - 230));
     $("#divTopHeader").css('width', (largura - 17));
 
+    $("#IdEmpresa").val(localStorage.getItem('IdEmpresa'));
+    $("#IdUnidade").val(localStorage.getItem('IdUnidade'));
+
     $("#btCadastrarNumeroPedido").click(function () {
         $("#ModalCadastrarNumero").modal('show');
     })
