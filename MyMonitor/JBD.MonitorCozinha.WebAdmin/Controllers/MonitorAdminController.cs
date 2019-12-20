@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using AutoMapper;
 using JBD.MonitorCozinha.Domain.Enuns;
 using JBD.MonitorCozinha.WebAdmin.Models;
@@ -35,12 +34,14 @@ namespace JBD.MonitorCozinha.WebAdmin.Controllers
         public ActionResult Listar(int IdEmpresa, int IdUnidade)
         {
             if (!Controle.ValidarUsuarioLogado()) { return RedirectToAction("Index", "Login"); }
-            //Controle.monitorCozinhaViewModel.beep = false;
+            
             ViewBag.Beep = false;
+            ViewBag.idTipoUsuario = Convert.ToInt32(IdUnidade.ToString().Substring((IdUnidade.ToString().Length - 1), 1));
 
+            int idUnidade = Convert.ToInt32(IdUnidade.ToString().Substring(0, (IdUnidade.ToString().Length - 1)));
             List<NumeroPedidoViewModel> numeroPedidoViewModel = new List<NumeroPedidoViewModel>();
 
-            numeroPedidoViewModel = _monitorAdminServiceWeb.ListarNumeroPedidos(IdEmpresa, IdUnidade);
+            numeroPedidoViewModel = _monitorAdminServiceWeb.ListarNumeroPedidos(IdEmpresa, idUnidade);
 
             foreach (var numero in numeroPedidoViewModel.Where(n => n.IdStatusPedido == StatusPedidoEnum.Fazendo && n.Controle == 1 ))
             {
@@ -54,36 +55,6 @@ namespace JBD.MonitorCozinha.WebAdmin.Controllers
                 _monitorAdminServiceWeb.AlterarNumeroPedido(numero);
                 ViewBag.Beep = true;
             }
-
-            ////-------------------------------------------------------------------------------------------------------------------------------------------------
-            //if (numeroPedidoViewModel.Where(p => p.IdStatusPedido == StatusPedidoEnum.Fazendo).Any())
-            //{
-            //    if (!Controle.monitorCozinhaViewModel.Carregado)
-            //    {
-            //        Controle.numerosPedidoCacheCozinha.AddRange(numeroPedidoViewModel.Where(p => p.IdStatusPedido == StatusPedidoEnum.Fazendo).ToList());
-            //        Controle.monitorCozinhaViewModel.Carregado = true;
-            //    }
-            //    else
-            //    {
-            //        foreach (var numeroPedido in numeroPedidoViewModel.Where(p => p.IdStatusPedido == StatusPedidoEnum.Fazendo).ToList())
-            //        {
-            //            if (!Controle.numerosPedidoCacheCozinha.Where(n => n.IdNumeroPedido == numeroPedido.IdNumeroPedido).Any())
-            //            {
-            //                Controle.monitorCozinhaViewModel.beep = true;
-            //                numeroPedido.NovoNumero = true;
-            //            }
-            //        }
-
-            //        Controle.numerosPedidoCacheCozinha = new List<NumeroPedidoViewModel>();
-            //        Controle.numerosPedidoCacheCozinha.AddRange(numeroPedidoViewModel.Where(p => p.IdStatusPedido == StatusPedidoEnum.Fazendo).ToList());
-            //    }
-            //}
-            //else
-            //{
-            //    Controle.numerosPedidoCacheCozinha = new List<NumeroPedidoViewModel>();
-            //    Controle.monitorCozinhaViewModel.Carregado = true;
-            //}
-            ////-------------------------------------------------------------------------------------------------------------------------------------------------
 
             return PartialView("~/Views/MonitorAdmin/MainMonitor.cshtml", numeroPedidoViewModel.OrderBy(n => n.IdNumeroPedido));
         }

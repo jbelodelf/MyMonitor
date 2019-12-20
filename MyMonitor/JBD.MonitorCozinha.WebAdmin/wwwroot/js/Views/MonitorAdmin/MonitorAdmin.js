@@ -1,9 +1,8 @@
 ﻿MonitorAdmin = {
     Listar: function () {
-        //var idEmpresa = $("#IdEmpresa").val();
-        //var idUnidade = $("#IdUnidade").val();
         var idEmpresa = localStorage.getItem('IdEmpresa');
-        var idUnidade = localStorage.getItem('IdUnidade');
+        var idUnidade = localStorage.getItem('IdUnidade') + localStorage.getItem('IdTipo');
+
         var url = "/MonitorAdmin/Listar";
         $.ajax({
             url: url
@@ -43,8 +42,6 @@
     },
 
     InserirNumero: function () {
-        //var idEmpresa = $("#IdEmpresa").val();
-        //var idUnidade = $("#IdUnidade").val();
         var idEmpresa = localStorage.getItem('IdEmpresa');
         var idUnidade = localStorage.getItem('IdUnidade');
         var NumeroPedido = $("#NumeroPedido").val();
@@ -96,7 +93,6 @@ $(document).ready(function () {
     var corFundo = localStorage.getItem("UnidadeCor");
     $("#divFazer").css('height', (altura - 230));
     $("#divTopHeader").css('width', (largura - 17));
-
     $("#IdEmpresa").val(localStorage.getItem('IdEmpresa'));
     $("#IdUnidade").val(localStorage.getItem('IdUnidade'));
 
