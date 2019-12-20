@@ -17,9 +17,9 @@ namespace JBD.MonitorCozinha.WebAdmin.Controllers
         }
 
         // GET: Index/funcionalidade
-        public ActionResult Index(string funcionalidade)
+        public ActionResult Index(string funcionalidade, int IdEmpresa)
         {
-            var empresa = _service.ObterEmpresa(Controle.ControleAcesso.IdEmpresa);
+            var empresa = _service.ObterEmpresa(IdEmpresa);
             Controle.PerfilPFuncionalidade.Nome = funcionalidade;
 
             return View(empresa);

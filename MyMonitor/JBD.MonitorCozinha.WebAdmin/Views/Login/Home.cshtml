@@ -64,13 +64,14 @@
     <footer class="border-top footer text-muted">
         <div class="container-fluid" style="text-align:center">
             &copy; 2019 - Mymonitor.com.br @*<a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>*@
+            <div id="versaoApp" style="font-size: smaller;"></div>
         </div>
     </footer>
 
     @*<environment include="Development">*@
-        <script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
-        <script src="~/js/Views/Usuario/Usuario.js"></script>
+        <script src="~/lib/jquery/dist/jquery.js" asp-append-version="true"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js" asp-append-version="true"></script>
+        <script src="~/js/Views/Usuario/Usuario.js" asp-append-version="true"></script>
     @*</environment>*@
 </body>
 </html>

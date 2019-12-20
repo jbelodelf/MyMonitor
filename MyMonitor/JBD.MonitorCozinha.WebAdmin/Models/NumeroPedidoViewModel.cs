@@ -5,12 +5,14 @@ namespace JBD.MonitorCozinha.WebAdmin.Models
 {
     public class NumeroPedidoViewModel
     {
-        public int IdNumeroPedido { get; set; }
+        public Int64 IdNumeroPedido { get; set; }
         public int IdUnidade { get; set; }
         public int IdEmpresa { get; set; }
         public string NumeroPedido { get; set; }
         public StatusPedidoEnum IdStatusPedido { get; set; }
         public DateTime DataCadastro { get; set; }
+        public DateTime? DataPronto { get; set; }
         public DateTime? DataFinalizacao { get; set; }
+        public int Controle { get; set; }
     }
 }

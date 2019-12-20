@@ -92,7 +92,7 @@ namespace Data.Repositories
 
             using (var rep = new RepositoryBase<UsuarioEntity>())
             {
-                if (userName == "operacional")
+                if (userName.Contains("operacional"))
                 {
                     usuario = rep.Select(expressionFiltro).FirstOrDefault();
                 }

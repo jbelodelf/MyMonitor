@@ -1,8 +1,6 @@
 ﻿using JBD.MonitorCozinha.Domain.Enuns;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace JBD.MonitorCozinha.WebAdmin.Models
 {
@@ -11,10 +9,10 @@ namespace JBD.MonitorCozinha.WebAdmin.Models
         public int IdControleAcesso { get; set; }
         public int IdUsuario { get; set; }
         public TipoUsuarioEnum IdTipo { get; set; }
-
         public int IdUnidade { get; set; }
         public int IdEmpresa { get; set; }
         public string Unidade { get; set; }
+        public string UnidadeCor { get; set; }
         public string IP { get; set; }
         public DateTime DataLogin { get; set; }
         public DateTime DataLogoff { get; set; }
@@ -47,10 +45,20 @@ namespace JBD.MonitorCozinha.WebAdmin.Models
         // Cozinha
     }
 
+    public class MonitorCozinhaViewModel
+    {
+        public int IdUnidade { get; set; }
+        public bool Carregado { get; set; }
+        public bool beep { get; set; }
+    }
+
     public static class Controle
     {
         public static ControleAcessoViewModel ControleAcesso { get; set; } = new ControleAcessoViewModel();
         public static PerfilPFuncionalidadeViewModel PerfilPFuncionalidade { get; set; } = new PerfilPFuncionalidadeViewModel();
+        public static MonitorCozinhaViewModel monitorCozinhaViewModel { get; set; } = new MonitorCozinhaViewModel();
+        public static List<NumeroPedidoViewModel> numerosPedidoCacheCozinha { get; set; } = new List<NumeroPedidoViewModel>();
+        public static List<NumeroPedidoViewModel> numerosPedidoCacheTV { get; set; } = new List<NumeroPedidoViewModel>();
 
         public static void AtualzarAcesso(UsuarioViewModel usuario)
         {
@@ -61,6 +69,7 @@ namespace JBD.MonitorCozinha.WebAdmin.Models
             if (usuario.Unidade != null)
             {
                 ControleAcesso.Unidade = usuario.Unidade.Nome;
+                ControleAcesso.UnidadeCor = usuario.Unidade.UnidadeCor;
             }
             ControleAcesso.ConexaoAtiva = true;
             ControleAcesso.DataLogin = DateTime.Now;
@@ -75,8 +84,6 @@ namespace JBD.MonitorCozinha.WebAdmin.Models
             }
             return valido;
         }
-
-
 
     }
 }

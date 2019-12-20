@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using AutoMapper;
+using Hanssens.Net;
 using JBD.MonitorCozinha.CrossCutting;
 using JBD.MonitorCozinha.WebAdmin.Models;
 using JBD.MonitorCozinha.WebAdmin.Services;
@@ -39,9 +40,10 @@ namespace JBD.MonitorCozinha.WebAdmin.Controllers
             string mansagem = "";
             bool logado = false;
             bool autenticar = false;
+            var usuario = new UsuarioViewModel();
             try
             {
-                var usuario = _usuarioServiceWeb.UsuarioLogar(userName, GeraradorDeHash.GerarHash256(senha));
+                usuario = _usuarioServiceWeb.UsuarioLogar(userName, GeraradorDeHash.GerarHash256(senha));
                 if (usuario != null)
                 {
                     var empresa = _empresaServiceWeb.ObterEmpresa(usuario.IdEmpresa);
@@ -78,7 +80,8 @@ namespace JBD.MonitorCozinha.WebAdmin.Controllers
             {
                 mansagem = "Erro: Entre em contato com o Administrador!";
             }
-            return Json(new { message = mansagem, logado = logado });
+
+            return Json(new { message = mansagem, logado = logado, usuario = usuario });
         }
 
         public ActionResult Home()
