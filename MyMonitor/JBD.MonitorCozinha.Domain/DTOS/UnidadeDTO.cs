@@ -22,6 +22,7 @@ namespace JBD.MonitorCozinha.Domain.DTOS
         public string Email { get; set; }
         public DateTime DataCadastro { get; set; }
         public string ImageLogomarca { get; set; }
+        public string UnidadeCor { get; set; }
 
         public List<PessoaDTO> Pessoas { get; set; }
         public List<NumeroPedidoDTO> NumeroPedidos { get; set; }

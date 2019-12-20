@@ -56,6 +56,7 @@
     <footer class="border-top footer text-muted">
         <div class="container-fluid" style="text-align:center">
             &copy; 2019 - Mymonitor.com.br @*<a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>*@
+            <div id="versaoAppMonitorAdm" style="font-size: smaller;"></div>
         </div>
     </footer>
 
@@ -111,10 +112,10 @@
     </div>
 
     @*<environment include="Development">*@
-        <script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
-        <script src="~/js/Views/MonitorAdmin/MonitorAdmin.js"></script>
-        <script src="~/lib/fontawesome/fontawesome-free-5.9.0-web/js/all.js"></script>
+        <script src="~/lib/jquery/dist/jquery.js" asp-append-version="true"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js" asp-append-version="true"></script>
+        <script src="~/js/Views/MonitorAdmin/MonitorAdmin.js" asp-append-version="true"></script>
+        <script src="~/lib/fontawesome/fontawesome-free-5.9.0-web/js/all.js" asp-append-version="true"></script>
     @*</environment>*@
 </body>
 </html>

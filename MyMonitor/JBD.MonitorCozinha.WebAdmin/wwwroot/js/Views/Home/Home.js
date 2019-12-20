@@ -1,7 +1,9 @@
 ﻿Home = {
     InserirNumero: function (origem) {
-        var IdEmpresa = $("#IdEmpresa").val();
-        var IdUnidade = $("#IdUnidade").val();
+        //var IdEmpresa = $("#IdEmpresa").val();
+        //var IdUnidade = $("#IdUnidade").val();
+        var IdEmpresa = localStorage.getItem('IdEmpresa');
+        var IdUnidade = localStorage.getItem('IdUnidade');
         var NumeroPedido = $("#NumeroPedido").val();
 
         var url = "/MonitorAdmin/InserirNumeroPedido";
@@ -66,6 +68,8 @@
     
     Confirmar: function (idUnidade, logomarca, nomeCozinha) {
         $("#IdUnidade").val(idUnidade);
+        localStorage.setItem('IdUnidade', idUnidade);
+
         $("#Logomarca").val(logomarca);
         $("#CozinhaNome").val(nomeCozinha);
 
@@ -73,7 +77,6 @@
         var logo = '<img src="' + logomarca + '"' + ' class="img-fluid rounded img-thumbnail btn-outline-danger">';
         $("#dvNumeroPedido").html(num);
         $("#dvLogomarca").html(logo);
-
         $("#dvFinalizar").hide();
         $("#dvCozinhas").hide();
         $("#dvConfirmar").show();
@@ -83,18 +86,21 @@
     },
 
     Finalizar: function () {
-        var nomeCozinha = '<button class="btn btn-lg-hover btn-block btn-custom" id="btFinalizar" style="font-size:40px;" onclick="Home.Iniciar()">&nbsp;&nbsp' + $("#CozinhaNome").val() + '&nbsp;&nbsp;</button>';
+        var nomeCozinha = '<button class="btn btn-lg-hover btn-block btn-custom" id="btFinalizar" style="font-size:40px;">&nbsp;&nbsp' + $("#CozinhaNome").val() + '&nbsp;&nbsp;</button>';
         $("#dvBtNomeCozinha").html(nomeCozinha);
-
         $("#dvConfirmar").hide();
         $("#dvFinalizar").show();
+        $('#dvBtVoltar')[0].style.display = "none";
+
+        window.setTimeout(function () {
+            Home.Iniciar();
+        }, 2000);
     },
 
     Iniciar: function () {
         $("#Logomarca").val("");
         $("#CozinhaNome").val("");
         $("#NumeroPedido").val("");
-
         $("#dvDigitarNumero").hide();
         $("#dvFinalizar").hide();
         $("#dvIniciar").show();
@@ -103,6 +109,9 @@
 }
 
 $(document).ready(function () {
+    $("#IdEmpresa").val(localStorage.getItem('IdEmpresa'));
+    $("#IdUnidade").val(localStorage.getItem('IdUnidade'));
+
     $("#btnFecharNumeroPedido").click(function () {
         $("#ModalCadastrarNumero").modal('hide');
     })
@@ -110,6 +119,8 @@ $(document).ready(function () {
     $("#btnSalvarNumeroPedido").click(function () {
         Home.InserirNumero("OPERADOR");
     })
+
+    $("#versaoAppMonitor").html("Versão: 1.1.0.0");
 })
 
 function isNumeric(str) {

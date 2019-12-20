@@ -32,6 +32,11 @@ namespace JBD.MonitorCozinha.Application.Repositories
             return _service.ObterUsuarioById(Id);
         }
 
+        public UsuarioEntity ObterUsuarioByUserName(string userName)
+        {
+            return _service.ObterUsuarioByUserName(userName);
+        }
+
         public UsuarioEntity Salvar(UsuarioEntity usuario)
         {
             return _service.Salvar(usuario);

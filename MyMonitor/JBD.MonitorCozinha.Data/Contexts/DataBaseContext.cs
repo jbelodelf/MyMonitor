@@ -32,17 +32,17 @@ namespace Data.Contexts
         public DbSet<StatusPedidoEntity> StatusPedido { get; set; }
         public DbSet<TipoContatoEntity> TipoContato { get; set; }
         public DbSet<TipoUsuarioEntity> TipoUsuario { get; set; }
-
+        public DbSet<LembreteSenhaEntity> LembreteSenha { get; set; }
 
         private string StringConectionConfig()
         {
             //Produção
             return "Server=mssql.mymonitor.com.br;Database=mymonitor;User Id=mymonitor;Password=sqlserver2016;MultipleActiveResultSets=true;Encrypt=YES;TrustServerCertificate=YES";
 
-            ////Local
-            //return "Server=DESKTOP-IANDO4A;Database=DB_MONITOR_COZINHA;User Id=sa;Password=sqlserver2016;MultipleActiveResultSets=true;Encrypt=YES;TrustServerCertificate=YES";
+            //Local
+            //return "Server=DESKTOP-IANDO4A;Database=mymonitor_local;User Id=sa;Password=sqlserver2016;MultipleActiveResultSets=true;Encrypt=YES;TrustServerCertificate=YES";
 
-            ////Michel
+            //Michel
             //return "Server=DESKTOP-24V97RI;Database=DB_MONITOR_COZINHA;User Id=sa;Password=mbelo;MultipleActiveResultSets=true;Encrypt=YES;TrustServerCertificate=YES";
         }
     }

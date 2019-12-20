@@ -106,7 +106,7 @@ namespace JBD.MonitorCozinha.WebAdmin.Controllers
                         IdPessoa = 0,
                         IdTipo = TipoUsuarioEnum.Operacional,
                         IdStatus = (int)StatusEnum.Ativo,
-                        UserName = "operacional",
+                        UserName = "operacional" + empresaRetorno.IdEmpresa.ToString(),
                         Password = GeraradorDeHash.GerarHash256(padraoPassword),
                         DataCadastro = DateTime.Now,
                         Pessoa = null,

@@ -102,7 +102,7 @@
                     <div class="form-group col-md-12">
                         <Label class="control-label col-md-10" style="color: #FF7175;">DIGITE O NÚMERO DO PEDIDO</Label>
                         <div class="col-md-12">
-                            <input type="text" id="NumeroPedido" name="NumeroPedido" class="form-control form-control-lg col-2 d-inline-flex" maxlength="10" placeholder="Nº Pedido" style="background-color: #FF7175; color: white; font-size:xx-large;" />
+                            <input type="text" id="NumeroPedido" name="NumeroPedido" class="form-control form-control-lg col-12 d-inline-flex" maxlength="10" placeholder="Nº Pedido" style="background-color: #FF7175; color: white; font-size:xx-large;" />
                         </div>
                     </div>
                     <div class="col-md-12" style="text-align:center; padding-top: 5px; font-size:40px;">
@@ -215,6 +215,7 @@
         <footer class="border-top footer text-muted">
             <div class="container-fluid" style="text-align:center">
                 &copy; 2019 - Mymonitor.com.br @*<a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>*@
+               <div id="versaoAppMonitor" style="font-size: smaller;"></div>
             </div>
         </footer>
     }
@@ -271,11 +272,11 @@
     </div>
 
     @*<environment include="Development">*@
-        <script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
-        <script src="~/js/Views/Usuario/Usuario.js"></script>
-        <script src="~/js/Views/Home/Home.js"></script>
-        <script src="~/lib/fontawesome/fontawesome-free-5.9.0-web/js/all.js"></script>
+        <script src="~/lib/jquery/dist/jquery.js" asp-append-version="true"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js" asp-append-version="true"></script>
+        <script src="~/js/Views/Usuario/Usuario.js" asp-append-version="true"></script>
+        <script src="~/js/Views/Home/Home.js" asp-append-version="true"></script>
+        <script src="~/lib/fontawesome/fontawesome-free-5.9.0-web/js/all.js" asp-append-version="true"></script>
     @*</environment>*@
 </body>
 </html>

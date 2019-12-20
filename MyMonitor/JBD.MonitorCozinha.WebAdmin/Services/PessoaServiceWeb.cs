@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace JBD.MonitorCozinha.WebAdmin.Services
 {
-    public class PessoaServiceWeb
+    public class PessoaServiceWeb : ServiceBaseUrl
     {
         private readonly IMapper _mapper;
 
@@ -26,7 +26,7 @@ namespace JBD.MonitorCozinha.WebAdmin.Services
             using (HttpClient client = new HttpClient())
             {
                 ServiceBase(client);
-                HttpResponseMessage response = client.GetAsync("ListarPessoas").Result;
+                HttpResponseMessage response = client.GetAsync("Pessoa/ListarPessoas").Result;
                 string stringData = response.Content.ReadAsStringAsync().Result;
                 List<PessoaDTO> data = JsonConvert.DeserializeObject<List<PessoaDTO>>(stringData);
 
@@ -41,7 +41,7 @@ namespace JBD.MonitorCozinha.WebAdmin.Services
             using (HttpClient client = new HttpClient())
             {
                 ServiceBase(client);
-                HttpResponseMessage response = client.GetAsync("ListarPessoaByIdUnidade/" + Id).Result;
+                HttpResponseMessage response = client.GetAsync("Pessoa/ListarPessoaByIdUnidade/" + Id).Result;
                 string stringData = response.Content.ReadAsStringAsync().Result;
                 List<PessoaDTO> data = JsonConvert.DeserializeObject<List<PessoaDTO>>(stringData);
 
@@ -55,7 +55,7 @@ namespace JBD.MonitorCozinha.WebAdmin.Services
             using (HttpClient client = new HttpClient())
             {
                 ServiceBase(client);
-                HttpResponseMessage response = client.GetAsync("ObterPessoa/" + Id).Result;
+                HttpResponseMessage response = client.GetAsync("Pessoa/ObterPessoa/" + Id).Result;
                 string stringData = response.Content.ReadAsStringAsync().Result;
                 PessoaDTO data = JsonConvert.DeserializeObject<PessoaDTO>(stringData);
 
@@ -72,7 +72,7 @@ namespace JBD.MonitorCozinha.WebAdmin.Services
                 ServiceBase(client);
                 string parametroJSON = JsonConvert.SerializeObject(pessoaDTO);
                 StringContent conteudo = new StringContent(parametroJSON, Encoding.UTF8, "application/json");
-                HttpResponseMessage response = client.PostAsync("InserirPessoa", conteudo).Result;
+                HttpResponseMessage response = client.PostAsync("Pessoa/InserirPessoa", conteudo).Result;
                 string stringData = response.Content.ReadAsStringAsync().Result;
                 PessoaDTO data = JsonConvert.DeserializeObject<PessoaDTO>(stringData);
             }
@@ -86,7 +86,7 @@ namespace JBD.MonitorCozinha.WebAdmin.Services
                 ServiceBase(client);
                 string parametroJSON = JsonConvert.SerializeObject(pessoaDTO);
                 StringContent conteudo = new StringContent(parametroJSON, Encoding.UTF8, "application/json");
-                HttpResponseMessage response = client.PutAsync("AlterarPessoa", conteudo).Result;
+                HttpResponseMessage response = client.PutAsync("Pessoa/AlterarPessoa", conteudo).Result;
                 string stringData = response.Content.ReadAsStringAsync().Result;
                 PessoaDTO data = JsonConvert.DeserializeObject<PessoaDTO>(stringData);
             }
@@ -94,8 +94,8 @@ namespace JBD.MonitorCozinha.WebAdmin.Services
 
         public void ServiceBase(HttpClient client)
         {
-            //client.BaseAddress = new Uri("http://localhost:52936/api/Pessoa/");
-            client.BaseAddress = new Uri("http://www.apimymonitor.com.br/api/Pessoa/");
+            client.BaseAddress = new Uri(Url);
+
             MediaTypeWithQualityHeaderValue contentType = new MediaTypeWithQualityHeaderValue("application/json");
             client.DefaultRequestHeaders.Accept.Add(contentType);
         }

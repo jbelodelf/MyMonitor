@@ -77,5 +77,14 @@ namespace JBD.MonitorCozinha.WebApiAdmin.Controllers
             return StatusCode((int)HttpStatusCode.OK, usuarioDTO);
         }
 
+        [AcceptVerbs("GET")]
+        [Route("UsuarioByUsuerName/{userName}")]
+        public ObjectResult Get(string userName)
+        {
+            var usuarioEntity = _usuarioApp.ObterUsuarioByUserName(userName);
+            var usuarioDTO = _mapper.Map<UsuarioDTO>(usuarioEntity);
+            return StatusCode((int)HttpStatusCode.OK, usuarioDTO);
+        }
+
     }
 }

@@ -1,0 +1,85 @@
+﻿@model JBD.MonitorCozinha.WebAdmin.Models.LembreteSenhaViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>NovaSenha</title>
+
+    @*<environment include="Development">*@
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link href="~/css/login.css" rel="stylesheet" />
+    @*</environment>*@
+</head>
+<body>
+    <div class="row">
+        @if (Model != null)
+        {
+        <div class="col-md-4 container">
+            <input type="hidden" id="idUsuario" name="idUsuario" value="@Model.IdUsuario" />
+            <input type="hidden" id="useName" name="useName" value="@Model.UserName" />
+
+            <div class="modal-dialog border-dark">
+                <div class="modal-content" style="width: 200%; margin-top: 50%; margin-left: -250px;">
+                    <div id="mensagem" name="mensagem" style="display: none; background-color: #ff2d296b; text-align:center; height: 40px; padding-top: 5px; font-size: 20px;"><b>mensagem</b></div>
+                    <div class="modal-header">
+                        <div class="col-md-11" style="text-align:center">
+                            <h3 class="modal-title">ALTERAR SENHA - USUÁRIO: <b>@Model.UserName</b></h3>
+                        </div>
+                    </div>
+                    <fieldset>
+                        <div class="form-horizontal">
+                            <div>&ensp;</div>
+                            <div class="form-group row col-md-12">
+                                <div class="form-group col-md-4">
+                                    <div class="col-md-12">
+                                        <input type="password" id="Password" name="Password" placeholder="Nova senha" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <div class="col-md-12">
+                                        <input type="password" id="Password2" name="Password2" placeholder="Repita a senha" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <input type="button" class="fadeIn fourth" value="Envir" onclick="Usuario.ValidaSenhaDigitada();">
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+        }
+        else
+        {
+            <div class="col-md-4 container">
+                <div class="modal-dialog border-dark">
+                    <div class="modal-content" style="width: 200%; margin-top: 50%; margin-left: -250px;">
+                        <fieldset>
+                            <div class="form-horizontal">
+                                <div>&ensp;</div>
+                                <div class="form-group row col-md-12">
+                                    <label class="col-md-12" style="text-align:center; font-size:20px;"><b>Este link já expiorou!</b>!</label>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+    @*<environment include="Development">*@
+    <script src="~/lib/jquery/dist/jquery.js" asp-append-version="true"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js" asp-append-version="true"></script>
+    <script src="~/lib/fontawesome/fontawesome-free-5.9.0-web/js/all.js" asp-append-version="true"></script>
+    <script src="~/js/Views/Usuario/Usuario.js" asp-append-version="true"></script>
+    @*</environment>*@
+</body>
+</html>

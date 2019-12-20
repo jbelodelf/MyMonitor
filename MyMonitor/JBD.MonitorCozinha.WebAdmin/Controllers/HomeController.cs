@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using JBD.MonitorCozinha.WebAdmin.Models;
 using JBD.MonitorCozinha.WebAdmin.Services;
 using AutoMapper;
@@ -22,14 +17,10 @@ namespace JBD.MonitorCozinha.WebAdmin.Controllers
         }
 
         // GET: Index/funcionalidade
-        //[HttpGet("Index/{funcionalidade}")]
-        public ActionResult Index(string funcionalidade)
+        public ActionResult Index(string funcionalidade, int IdEmpresa)
         {
-            var empresa = _service.ObterEmpresa(Controle.ControleAcesso.IdEmpresa);
+            var empresa = _service.ObterEmpresa(IdEmpresa);
             Controle.PerfilPFuncionalidade.Nome = funcionalidade;
-
-            var testeA = Controle.ControleAcesso;
-            var testeF = Controle.PerfilPFuncionalidade;
 
             return View(empresa);
         }

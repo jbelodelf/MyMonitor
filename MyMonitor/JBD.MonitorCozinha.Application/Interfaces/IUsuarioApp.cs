@@ -12,5 +12,6 @@ namespace JBD.MonitorCozinha.Application.Interfaces
         UsuarioEntity Salvar(UsuarioEntity usuario);
         void Deletar(int Id);
         UsuarioEntity UsuarioLogar(string userName, string senha);
+        UsuarioEntity ObterUsuarioByUserName(string userName);
     }
 }
